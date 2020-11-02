@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.worldofzuulgui.ByenController">
+    <children>
+        <ImageView fx:id="background" fitHeight="720.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../java/com/mycompany/JavaBilleder1/ByenFinal4.png" />
+            </image>
+        </ImageView>
+        <Button fx:id="goHjem" layoutX="25.0" layoutY="347.0" mnemonicParsing="false" onAction="#goHjemAction" text="Hjem" />
+        <Button fx:id="goGaden" layoutX="875.0" layoutY="349.0" mnemonicParsing="false" onAction="#goGadenAction" text="Gågaden" />
+      
+        <Pane fx:id="spawnPane" layoutX="109.0" layoutY="32.0" prefHeight="597.0" prefWidth="795.0">
+            <children>
+                <ImageView fx:id="f1" fitHeight="50.0" fitWidth="85.0" layoutX="47.0" layoutY="128.0" onMouseClicked="#trashClicked" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@placeholder.jpeg" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="f2" fitHeight="50.0" fitWidth="85.0" layoutX="387.0" layoutY="128.0" onMouseClicked="#trashClicked" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@placeholder.jpeg" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="f3" fitHeight="50.0" fitWidth="85.0" layoutX="217.0" layoutY="395.0" onMouseClicked="#trashClicked" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@placeholder.jpeg" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="inv22" fitHeight="63.0" fitWidth="79.0" layoutX="408.0" layoutY="461.0" onMouseClicked="#invClicked2" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../java/com/mycompany/JavaBilleder1/Bananskrald.png" />
+                    </image>
+                </ImageView>
+            
+                <ImageView fx:id="inv11" fitHeight="63.0" fitWidth="79.0" layoutX="279.0" layoutY="455.0" onMouseClicked="#invClicked1" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../java/com/mycompany/JavaBilleder1/glasflaske.png" />
+                    </image>
+                </ImageView>
+            
+            </children>
+        </Pane>
+      
+        <Text fx:id="moveTxt" layoutX="73.0" layoutY="663.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="scoreTxt" layoutX="850.0" layoutY="661.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="sorterTxt" layoutX="297.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+    </children>
+</Pane>
