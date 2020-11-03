@@ -9,7 +9,8 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
-
+    final int[] xakse = {1,2,3,4,5};
+    final int[] yakse = {1,2,3,4,5};
     public Room(String description) 
     {
         this.description = description;
