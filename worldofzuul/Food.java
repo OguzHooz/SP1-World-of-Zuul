@@ -20,9 +20,7 @@ public class Food {
     //TODO lav en funktion der siger man har taget et stykke mad
 
 
-//TODO få det til at virke
-
-/*    public static void main(String[] args) {
+/*   public static void main(String[] args) {
         //opretter en spawn
         FoodSpawn<String> spawn = new FoodSpawn<String>();
 
@@ -41,22 +39,25 @@ public class Food {
         HashMap<Integer, Integer> foodCoordinatey = new HashMap<>();
 
         boolean spawnfood = false;
-        for (int i = 0; i < yakse.length; i++){
-            String e = spawn.getRandom();
-            if (e != "NOTHING"){
-                spawnfood = true;
-            }
-            if (spawnfood){
-                foodCoordinatey.put(i,i);
-            }
-            for (int j = 0; j < xakse.length; j++){
+        for (int i = 1; i < yakse.length+1; i++){
+            for (int j = 1; j < xakse.length+1; j++){
+                String e = spawn.getRandom();
+                if (!e.equals("NOTHING")){
+                    spawnfood = true;
+                }
                 if (spawnfood){
+                    foodCoordinatey.put(i,i);
+                    System.out.println(i + " " + j);
                     foodCoordinatex.put(i,j);
+                    spawnfood = false;
                 } else {
                     System.out.println("NOTHING");
                 }
             }
         }
+       //TODO skal have gemt alle de enkelte koordinate, lige nu tilføjer den kun de sidste af en eller anden grund
+       //lige nu udskriver denne således {x1,x2,....,xn} {y1,y2,...,yn}
+       System.out.println( foodCoordinatex + " " + foodCoordinatey);
     }*/
 }
 
