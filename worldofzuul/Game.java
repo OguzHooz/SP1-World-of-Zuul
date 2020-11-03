@@ -22,31 +22,55 @@ public class Game
     private void createRooms()
     {
         //Opretter en del forskellige rooms med hver deres navn
-        Room outside, theatre, pub, lab, office;
+        Room center, northesternSea, northernSea, northeasternSea, westernSea, easternSea, southwesternSea, southernSea, southeasternSea;
 
         //Tilføjer descriptions til rooms
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        center = new Room("In the middle of the sea");
+        northwesternSea = new Room("This is the left upper corner");
+        northernSea = new Room("you are now up");
+        northeasternSea = new Room("This is the right upper corner");
+        westernSea = new Room("you went left");
+        easternSea = new Room("you went right");
+        southwesternSea = new Room("This is the right down corner");
+        southernSea = new Room("you are now down");
+        southeasternSea = new Room("This is the left down corner");
 
         //tilføjer exits til diverse rooms
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        center.setExit("east", easternSea);
+        center.setExit("south", southernSea);
+        center.setExit("west", westernSea);
+        center.setExit("north", northernSea);
 
-        theatre.setExit("west", origo);
+        easternSea.setExit("west", center);
+        easternSea.setExit("north", northeasternSea);
+        easternSea.setExit("south", southeasternSea);
 
-        pub.setExit("east", origo);
+        westernSea.setExit("east", center);
+        westernSea.setExit("north", northwesternSea);
+        westernSea.setExit("south", southwesternSea);
 
-        lab.setExit("north", origo);
-        lab.setExit("east", office);
+        northernSea.setExit("east", northeasternSea);
+        northernSea.setExit("south", center);
+        northernSea.setExit("west", northwesternSea);
 
-        office.setExit("west", lab);
+        southernSea.setExit("north", center);
+        southernSea.setExit("east", southeasternSea);
+        southernSea.setExit("west", southwesternSea);
+
+        southwesternSea.setExit("east", southernSea);
+        southwesternSea.setExit("north", westernSea);
+
+        northwesternSea.setExit("east", northernSea);
+        northwesternSea.setExit("south", westernSea);
+
+        northeasternSea.setExit("south", easternSea);
+        northeasternSea.setExit("west", northernSea);
+
+        southeasternSea.setExit("west", southernSea);
+        southeasternSea.setExit("north", easternSea);
 
         //sætter startstedet af spillet
-        currentRoom = outside;
+        currentRoom = center;
     }
 
     public void play() 
