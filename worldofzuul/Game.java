@@ -22,7 +22,7 @@ public class Game
     private void createRooms()
     {
         //Opretter en del forskellige rooms med hver deres navn
-        Room center, northesternSea, northernSea, northeasternSea, westernSea, easternSea, southwesternSea, southernSea, southeasternSea;
+        Room center, northwesternSea, northernSea, northeasternSea, westernSea, easternSea, southwesternSea, southernSea, southeasternSea;
 
         //Tilføjer descriptions til rooms
         center = new Room("In the middle of the sea");
