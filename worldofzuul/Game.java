@@ -84,7 +84,7 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        //hvis spil afsluttet udskriv denne linje
+        //hvis spil afsluttet, udskriv denne linje
         System.out.println("Thank you for playing.  Good bye.");
     }
 
@@ -92,8 +92,11 @@ public class Game
     {
         //velkomsttekst, udskriver hjælpe kommando, lang description for starterrum
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to The Crap game!");
+        System.out.println("The Crap game is a new, incredibly educational adventures game.");
+        System.out.println("The sea keeps getting more polluted, because of the increased level of carbondioxide");
+        System.out.println("It affects the food chain in the sea really negatively");
+        System.out.println("You are a crap and have to catch some food to survive");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
