@@ -93,8 +93,8 @@ public class Game
         //velkomsttekst, udskriver hjælpe kommando, lang description for starterrum
         System.out.println();
         System.out.println("Welcome to The Crap game!");
-        System.out.println("The Crap game is a new, incredibly educational adventures game.");
-        System.out.println("The sea keeps getting more polluted, because of the increased level of carbondioxide");
+        System.out.println("The Crap game is a new, incredibly educational adventure game.");
+        System.out.println("The oceans keeps getting more polluted, because of the increased level of carbondioxide");
         System.out.println("It affects the food chain in the sea really negatively");
         System.out.println("You are a crap and have to catch some food to survive");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
