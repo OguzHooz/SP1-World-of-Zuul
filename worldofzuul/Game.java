@@ -185,7 +185,9 @@ public class Game
         Room nextRoom = currentRoom.getExit(direction);
         //hvis der ikke er en exit den vej man har skrevet
         if (nextRoom == null) {
-            System.out.println("Too far from border");
+            System.out.println("There is no room this way");
+        } else if (Player.position[1] != 1 || Player.position[1] != 5 || Player.position[0] != 1 || Player.position[0] != 5 ){
+            System.out.println("You are too far from the border");
         }
         else { //hvis der en exit gem som nyt rum udskriv lang description
             currentRoom = nextRoom;
