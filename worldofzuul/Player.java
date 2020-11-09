@@ -4,20 +4,20 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class Player {
-    //skal indsamles i starten på et tidspunkt
-    String name;
-    int Hunger;
+    //skal indsamles i starten på et tidspunkt ikke brugt endnu
+    public int Hunger;
+    //laver to ints som er koordinater for playerclassen, og laver et array af de to koordinater
     public static int xkoordinat;
     public static int ykoordinat;
     static int[] position = {xkoordinat, ykoordinat};
-
+//funktion der tager et tal og flytter ad x aksen, ved at ændre xkoordinat
     public static void moveXakse(int x) {
 
         position[0] = position[0] + x;
         System.out.println("\nYou are now standing on: " + Arrays.toString(position));
 
     }
-
+    //funktion der tager et tal og flytter ad y aksen, ved at ændre ykoordinat
     public static void moveYakse(int y) {
 
         position[1] = position[1] + y;
@@ -25,7 +25,7 @@ public class Player {
 
     }
 
-
+    //funktion der checker om man er tæt på grænsen mellem rum, ved at se om koord = 0 eller 5
     public static boolean onBorder(){
         boolean canMove = false;
         if (position[1] == 0){
@@ -39,15 +39,4 @@ public class Player {
         }
         return canMove;
     }
-
-
-    public static void setXkoordinat(int x) {
-        xkoordinat = x;
-    }
-    public static void setYkoordinat(int y) {
-        ykoordinat = y;
-    }
-
-
-
 }
