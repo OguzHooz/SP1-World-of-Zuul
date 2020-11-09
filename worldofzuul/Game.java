@@ -190,7 +190,7 @@ public class Game
             System.out.println("You are too far from the border");
         }
         else { //hvis der en exit gem som nyt rum udskriv lang description
-            //check hvilken vej man er gået og checker om man står rigtigt (0 eller 5)
+            //check hvilken vej man er gået og check om man står rigtigt (0 eller 5)
             if (direction.equals("north") && Player.position[1] == 5){
                 Player.position[1] = 0;
                 currentRoom = nextRoom;
