@@ -191,20 +191,20 @@ public class Game
         }
         else { //hvis der en exit gem som nyt rum udskriv lang description
             //check hvilken vej man er gået
-            if (direction == "north" && Player.position[0] == 5){
+            if (direction.equals("north") && Player.position[1] == 5){
+                Player.position[1] = 0;
+                currentRoom = nextRoom;
+                System.out.println(currentRoom.getLongDescription());
+            } else if (direction.equals("south") && Player.position[1] == 0){
+                Player.position[1] = 5;
+                currentRoom = nextRoom;
+                System.out.println(currentRoom.getLongDescription());
+            } else if (direction.equals("east") && Player.position[0] == 5){
                 Player.position[0] = 0;
                 currentRoom = nextRoom;
                 System.out.println(currentRoom.getLongDescription());
-            } else if (direction == "south" && Player.position[0] == 0){
-                Player.position[0] = 0;
-                currentRoom = nextRoom;
-                System.out.println(currentRoom.getLongDescription());
-            } else if (direction == "east" && Player.position[1] == 0){
-                Player.position[0] = 0;
-                currentRoom = nextRoom;
-                System.out.println(currentRoom.getLongDescription());
-            } else if (direction == "west" && Player.position[1] == 5){
-                Player.position[0] = 0;
+            } else if (direction.equals("west") && Player.position[0] == 0){
+                Player.position[0] = 5;
                 currentRoom = nextRoom;
                 System.out.println(currentRoom.getLongDescription());
             } else {
