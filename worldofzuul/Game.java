@@ -1,7 +1,8 @@
 package worldofzuul;
 
-import javax.swing.*;
 
+import javax.swing.*;
+import java.util.*;
 
 
 public class Game
@@ -19,6 +20,7 @@ public class Game
         createRooms();
         //opretter ny parser til at forstå kommandoer
         parser = new Parser();
+        generateFood();
     }
 
 
@@ -81,6 +83,23 @@ public class Game
         //Printer velkomst nedenfor
         printWelcome();
 
+        //Er sikker på der altid er mad
+        if (foodCoordinatex.size() == 0){
+            generateFood();
+        }
+        //får settet af entries
+        Set set1 = foodCoordinatex.entrySet();
+        Set set2 = foodCoordinatey.entrySet();
+        //sætter op en tæller
+        Iterator i = set1.iterator();
+        Iterator i2 = set2.iterator();
+        while(i.hasNext()){
+            //mapper entries
+            Map.Entry me = (Map.Entry)i.next();
+            Map.Entry me2 = (Map.Entry)i2.next();
+            //udskriver entries
+            System.out.println("You can find food in " + me.getValue() + ", " + me2.getValue() );
+        }
         //Tjekker alle commandoer på nedenstående class, hvis der skrevet quit spring over
         boolean finished = false;
         while (! finished) {
@@ -128,6 +147,22 @@ public class Game
         //flytter rundt inden i et rum
         else if (commandWord == CommandWord.WALK) {
             walkfunc(command);
+            System.out.println(Food.score);
+            //får settet af entries
+            Set set1 = foodCoordinatex.entrySet();
+            Set set2 = foodCoordinatey.entrySet();
+            //sætter op en tæller
+            Iterator i = set1.iterator();
+            Iterator i2 = set2.iterator();
+            //TODO få det til at virke
+            while (i.hasNext()) {
+                Map.Entry me = (Map.Entry) i.next();
+                Map.Entry me2 = (Map.Entry) i2.next();
+                if (Player.xkoordinat == Integer.parseInt(me.getValue().toString()) && Player.ykoordinat == Integer.parseInt(me2.getValue().toString()) ){
+                    Food.addScore(1);
+                    System.out.println(Food.score + " you have gained a point");
+                }
+            }
         }
 
         //sætter wantToQuit til at TRUE, det ville sige vi afslutter spillet
@@ -136,7 +171,7 @@ public class Game
         }
         return wantToQuit;
     }
-//funktion der rykker ad den valgte vej, baseret på det andet skrevne ord.
+
     public String walkfunc(Command command) {
         if(!command.hasSecondWord()) {
             System.out.println("Which way do you wanna walk?");
@@ -172,6 +207,46 @@ public class Game
         parser.showCommands();
     }
 
+
+
+    //sætter op et hashmap til at gemme i hvilke coordinater der skal være mad
+    HashMap<Integer, Integer> foodCoordinatex = new HashMap<>();
+    HashMap<Integer, Integer> foodCoordinatey = new HashMap<>();
+    public void generateFood(){
+        //opretter et spawn
+        FoodSpawn<String> spawn = new FoodSpawn<String>();
+
+        //tilføjer en entry per enum i FoodTypes sammen med deres chance
+        for (FoodTypes ft : FoodTypes.values()) {
+            spawn.addEntry(ft.getFoodTypes(), ft.getChance());
+        }
+
+        //opretter en boolean til at sige hvis der skal være mad i et felt
+        boolean spawnfood = false;
+        //for loop til y-aksen
+        for (int i = 0; i < 5; i++){
+            //for loop der kører gennem x-aksen
+            for (int j = 0; j < 5; j++){
+                //nu da vi kører gennem hver neklt felt får vi et random output hver gang og gemmer det
+                //outputter "NOTHING" hvis der ikke er mad ellers outputter den navnet på det stykke mad der skal være
+                String e = spawn.getRandom();
+                //hvis der er mad så sæt spawnfood = true
+                if (!e.equals("NOTHING")){
+                    spawnfood = true;
+                }
+                //tjekker om spawnfood er sand
+                if (spawnfood){
+                    //gemmer y-koordinatet
+                    foodCoordinatey.put(i,i);
+                            //System.out.println(i + " " + j);
+                    //gemmer x koordinatet
+                    foodCoordinatex.put(i,j);
+                    //sætter spawnfood til at være falsk igen til næste løb af loopet
+                    spawnfood = false;
+                }
+            }
+        }
+    }
     private void goRoom(Command command) {
         //Hvis du bare skriver "go" udskrives dette
         if (!command.hasSecondWord()) {
@@ -190,7 +265,7 @@ public class Game
             System.out.println("You are too far from the border");
         }
         else { //hvis der en exit gem som nyt rum udskriv lang description
-            //check hvilken vej man er gået og check om man står rigtigt (0 eller 5)
+            //check hvilken vej man er gået
             if (direction.equals("north") && Player.position[1] == 5){
                 Player.position[1] = 0;
                 currentRoom = nextRoom;

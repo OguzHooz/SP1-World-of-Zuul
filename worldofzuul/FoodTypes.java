@@ -1,4 +1,4 @@
-package Food;
+package worldofzuul;
 
 public enum FoodTypes {
     //bruger denne til at rette chancen for de andre

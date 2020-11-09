@@ -1,10 +1,4 @@
-package Food;
-
-import java.awt.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Currency;
-import java.util.HashMap;
+package worldofzuul;
 
 public class Food {
     public static int score;
@@ -18,46 +12,5 @@ public class Food {
         return score;
     }
     //TODO lav en funktion der siger man har taget et stykke mad
-
-
-/*   public static void main(String[] args) {
-        //opretter en spawn
-        FoodSpawn<String> spawn = new FoodSpawn<String>();
-
-        //tilføjer en entry per enum i FoodTypes sammen med deres chance
-        for (FoodTypes ft : FoodTypes.values()) {
-            spawn.addEntry(ft.getFoodTypes(), ft.getChance());
-        }
-
-        //bruger xakse og yakse til at gå gennem hver enkelte felt
-        final int[] xakse = {1,2,3,4,5};
-        final int[] yakse = {1,2,3,4,5};
-
-
-        //sætter op et hashmap til at gemme i hvilke coordinater der skal være mad
-        HashMap<Integer, Integer> foodCoordinatex = new HashMap<>();
-        HashMap<Integer, Integer> foodCoordinatey = new HashMap<>();
-
-        boolean spawnfood = false;
-        for (int i = 1; i < yakse.length+1; i++){
-            for (int j = 1; j < xakse.length+1; j++){
-                String e = spawn.getRandom();
-                if (!e.equals("NOTHING")){
-                    spawnfood = true;
-                }
-                if (spawnfood){
-                    foodCoordinatey.put(i,i);
-                    System.out.println(i + " " + j);
-                    foodCoordinatex.put(i,j);
-                    spawnfood = false;
-                } else {
-                    System.out.println("NOTHING");
-                }
-            }
-        }
-       //TODO skal have gemt alle de enkelte koordinate, lige nu tilføjer den kun de sidste af en eller anden grund
-       //lige nu udskriver denne således {x1,x2,....,xn} {y1,y2,...,yn}
-       System.out.println( foodCoordinatex + " " + foodCoordinatey);
-    }*/
 }
 
