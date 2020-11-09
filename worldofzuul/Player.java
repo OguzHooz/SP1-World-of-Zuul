@@ -26,6 +26,19 @@ public class Player {
     }
 
 
+    public static boolean onBorder(){
+        boolean canMove = false;
+        if (position[1] == 0){
+            canMove = true;
+        } else if (position[1] == 5){
+            canMove = true;
+        } else if (position[0] == 0){
+            canMove = true;
+        } else if (position[0] == 5){
+            canMove = true;
+        }
+        return canMove;
+    }
 
 
     public static void setXkoordinat(int x) {
