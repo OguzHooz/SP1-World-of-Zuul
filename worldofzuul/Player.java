@@ -25,19 +25,25 @@ public class Player {
 
     }
 
-    public static void moveRoom(String retning) {
+    public static int moveRoom(String retning) {
         if (retning == "north"){
-            setYkoordinat(0);
+            return (0);
     }
         else if (retning == "west"){
-            setXkoordinat(0);
+            return (0);
     }
         else if (retning =="south"){
-            setYkoordinat(5);
+            return (5);
     }
         else if (retning == "east"){
-            setXkoordinat(5);
-    }}
+            return (5);
+
+    }
+    else {
+        System.out.println(retning);
+            return 10;
+        }
+    }
 
 
     public static void setXkoordinat(int x) {

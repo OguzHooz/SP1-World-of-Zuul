@@ -190,7 +190,7 @@ public class Game
         else { //hvis der en exit gem som nyt rum udskriv lang description
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
-            System.out.println(Player.moveRoom(String.valueOf(currentRoom.getExit(direction))));
+
 
         }
 

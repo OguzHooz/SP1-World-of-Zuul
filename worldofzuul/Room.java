@@ -15,6 +15,9 @@ public class Room
         exits = new HashMap<String, Room>();
 
     }
+
+
+
     public void setExit(String direction, Room neighbor)
     {
         exits.put(direction, neighbor);
@@ -30,7 +33,7 @@ public class Room
         return "You are " + description + ".\n" + getExitString();
     }
 
-    private String getExitString()
+    public String getExitString()
     {
         String returnString = "Exits:";
         Set<String> keys = exits.keySet();
