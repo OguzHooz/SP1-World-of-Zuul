@@ -186,32 +186,30 @@ public class Game
         //hvis der ikke er en exit den vej man har skrevet
         if (nextRoom == null) {
             System.out.println("There is no room this way");
+        } else if (!Player.onBorder()){
+            System.out.println("You are too far from the border");
         }
         else { //hvis der en exit gem som nyt rum udskriv lang description
-            if (direction == "north" & Player.ykoordinat == 5){
-                Player.position[1]=0;
+            //check hvilken vej man er gået
+            if (direction == "north" && Player.position[0] == 5){
+                Player.position[0] = 0;
                 currentRoom = nextRoom;
                 System.out.println(currentRoom.getLongDescription());
-            }
-            else if (direction == "east" & Player.xkoordinat == 5){
-                Player.position[0]=0;
+            } else if (direction == "south" && Player.position[0] == 0){
+                Player.position[0] = 0;
                 currentRoom = nextRoom;
                 System.out.println(currentRoom.getLongDescription());
-            }
-            else if (direction == "south" & Player.ykoordinat == 0){
-                Player.position[1]=5;
+            } else if (direction == "east" && Player.position[1] == 0){
+                Player.position[0] = 0;
                 currentRoom = nextRoom;
                 System.out.println(currentRoom.getLongDescription());
-            }
-            else if (direction == "west" & Player.xkoordinat == 5) {
-                Player.position[0] = 5;
+            } else if (direction == "west" && Player.position[1] == 5){
+                Player.position[0] = 0;
                 currentRoom = nextRoom;
                 System.out.println(currentRoom.getLongDescription());
-            }
-            else{
-                System.out.println("You're too far away from a border");
-                System.out.println(Player.ykoordinat);
-                System.out.println(Player.xkoordinat);
+            } else {
+                System.out.println("You are too far from that border");
+                return;
             }
 
         }
