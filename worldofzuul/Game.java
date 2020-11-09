@@ -2,13 +2,16 @@ package worldofzuul;
 
 import javax.swing.*;
 
+
+
 public class Game
 {
     //Her finder vi den som det teksbaseret spil skal forstå af kommandoer
     private Parser parser;
     //Gemmer det rum som man er i
     private Room currentRoom;
-        
+
+
 
     public Game() 
     {
@@ -25,15 +28,15 @@ public class Game
         Room center, northwesternSea, northernSea, northeasternSea, westernSea, easternSea, southwesternSea, southernSea, southeasternSea;
 
         //Tilføjer descriptions til rooms
-        center = new Room("In the middle of the sea");
-        northwesternSea = new Room("This is the upper left corner");
-        northernSea = new Room("you are now up");
-        northeasternSea = new Room("This is the upper right corner");
-        westernSea = new Room("you are now to the left");
-        easternSea = new Room("you are now to the right");
-        southwesternSea = new Room("This is the lower right corner");
-        southernSea = new Room("you are now down");
-        southeasternSea = new Room("This is the lower left corner");
+        center = new Room("in the middle of the sea");
+        northwesternSea = new Room("in the upper left corner");
+        northernSea = new Room("now up");
+        northeasternSea = new Room("in the upper right corner");
+        westernSea = new Room("to the left");
+        easternSea = new Room("to the right");
+        southwesternSea = new Room("in the lower right corner");
+        southernSea = new Room(" now down");
+        southeasternSea = new Room("in the lower left corner");
 
         //tilføjer exits til diverse rooms
         center.setExit("east", easternSea);
@@ -96,7 +99,7 @@ public class Game
         System.out.println("The Crap game is a new, incredibly educational adventure game.");
         System.out.println("The oceans keeps getting more polluted, because of the increased level of carbondioxide");
         System.out.println("It affects the food chain in the sea really negatively");
-        System.out.println("You are a crap and have to catch some food to survive");
+        System.out.println("You are a crab and have to catch some food to survive");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -119,6 +122,7 @@ public class Game
         }
         //flytter rum
         else if (commandWord == CommandWord.GO) {
+            //moveRoom(command.getSecondWord());
             goRoom(command);
         }
         //flytter rundt inden i et rum
@@ -176,15 +180,18 @@ public class Game
         }
         //direction er det om man har brugt south,east,west,north når man opretter rummet
         String direction = command.getSecondWord();
+
         //gemmer det næste rum som det nuværende i forhold hvilket direction man har gået til
         Room nextRoom = currentRoom.getExit(direction);
         //hvis der ikke er en exit den vej man har skrevet
         if (nextRoom == null) {
-            System.out.println("There is no door!");
-        } else { //hvis der en exit gem som nyt rum udskriv lang description
+            System.out.println("Too far from border");
+        }
+        else { //hvis der en exit gem som nyt rum udskriv lang description
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
-            System.out.println(command.getSecondWord());
+            System.out.println(Player.moveRoom(String.valueOf(currentRoom.getExit(direction))));
+
         }
 
     }

@@ -24,4 +24,29 @@ public class Player {
         System.out.println("\nYou are now standing on: " + Arrays.toString(position));
 
     }
+
+    public static void moveRoom(String retning) {
+        if (retning == "north"){
+            setYkoordinat(0);
+    }
+        else if (retning == "west"){
+            setXkoordinat(0);
+    }
+        else if (retning =="south"){
+            setYkoordinat(5);
+    }
+        else if (retning == "east"){
+            setXkoordinat(5);
+    }}
+
+
+    public static void setXkoordinat(int x) {
+        xkoordinat = x;
+    }
+    public static void setYkoordinat(int y) {
+        ykoordinat = y;
+    }
+
+
+
 }
