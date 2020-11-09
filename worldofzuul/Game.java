@@ -1,6 +1,8 @@
 package worldofzuul;
 
-public class Game 
+import javax.swing.*;
+
+public class Game
 {
     //Her finder vi den som det teksbaseret spil skal forstå af kommandoer
     private Parser parser;
@@ -20,31 +22,55 @@ public class Game
     private void createRooms()
     {
         //Opretter en del forskellige rooms med hver deres navn
-        Room outside, theatre, pub, lab, office;
+        Room center, northwesternSea, northernSea, northeasternSea, westernSea, easternSea, southwesternSea, southernSea, southeasternSea;
 
         //Tilføjer descriptions til rooms
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        center = new Room("In the middle of the sea");
+        northwesternSea = new Room("This is the upper left corner");
+        northernSea = new Room("you are now up");
+        northeasternSea = new Room("This is the upper right corner");
+        westernSea = new Room("you are now to the left");
+        easternSea = new Room("you are now to the right");
+        southwesternSea = new Room("This is the lower right corner");
+        southernSea = new Room("you are now down");
+        southeasternSea = new Room("This is the lower left corner");
 
         //tilføjer exits til diverse rooms
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        center.setExit("east", easternSea);
+        center.setExit("south", southernSea);
+        center.setExit("west", westernSea);
+        center.setExit("north", northernSea);
 
-        theatre.setExit("west", outside);
+        easternSea.setExit("west", center);
+        easternSea.setExit("north", northeasternSea);
+        easternSea.setExit("south", southeasternSea);
 
-        pub.setExit("east", outside);
+        westernSea.setExit("east", center);
+        westernSea.setExit("north", northwesternSea);
+        westernSea.setExit("south", southwesternSea);
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
+        northernSea.setExit("east", northeasternSea);
+        northernSea.setExit("south", center);
+        northernSea.setExit("west", northwesternSea);
 
-        office.setExit("west", lab);
+        southernSea.setExit("north", center);
+        southernSea.setExit("east", southeasternSea);
+        southernSea.setExit("west", southwesternSea);
+
+        southwesternSea.setExit("east", southernSea);
+        southwesternSea.setExit("north", westernSea);
+
+        northwesternSea.setExit("east", northernSea);
+        northwesternSea.setExit("south", westernSea);
+
+        northeasternSea.setExit("south", easternSea);
+        northeasternSea.setExit("west", northernSea);
+
+        southeasternSea.setExit("west", southernSea);
+        southeasternSea.setExit("north", easternSea);
 
         //sætter startstedet af spillet
-        currentRoom = outside;
+        currentRoom = center;
     }
 
     public void play() 
@@ -58,7 +84,7 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        //hvis spil afsluttet udskriv denne linje
+        //hvis spil afsluttet, udskriv denne linje
         System.out.println("Thank you for playing.  Good bye.");
     }
 
@@ -66,8 +92,11 @@ public class Game
     {
         //velkomsttekst, udskriver hjælpe kommando, lang description for starterrum
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to The Crap game!");
+        System.out.println("The Crap game is a new, incredibly educational adventure game.");
+        System.out.println("The oceans keeps getting more polluted, because of the increased level of carbondioxide");
+        System.out.println("It affects the food chain in the sea really negatively");
+        System.out.println("You are a crap and have to catch some food to survive");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -97,6 +126,37 @@ public class Game
             wantToQuit = quit(command);
         }
         return wantToQuit;
+    }
+
+    public static String walkfunc(Command command) {
+        if(!command.hasSecondWord()) {
+            System.out.println("Which way do you wanna walk?");
+            System.out.println(command.getSecondWord());
+            System.out.println(command.getCommandWord());
+            }
+        else if (command.getSecondWord().equals("north")){
+            System.out.print("walking north");
+            return "north";
+            }
+        else if (command.getSecondWord().equals("east")) {
+            System.out.print("walking east");
+            return "east";
+            }
+        else if (command.getSecondWord().equals("south")) {
+            System.out.print("walking south");
+            return "south";
+            }
+        else if (command.getSecondWord().equals("west")) {
+            System.out.print("walking west");
+            return "west";
+            }
+        else {
+            System.out.print("not sure what you meant...");
+
+
+        }
+    return "unknown";
+
     }
 
     private void printHelp() 
