@@ -19,6 +19,7 @@ public class Parser
         String inputLine;
         String word1 = null;
         String word2 = null;
+        int word3 = 0;
 
         System.out.print("> "); 
 

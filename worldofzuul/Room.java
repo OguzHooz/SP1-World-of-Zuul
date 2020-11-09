@@ -9,14 +9,22 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
-    final int[] xakse = {1,2,3,4,5};
-    final int[] yakse = {1,2,3,4,5};
-    public Room(String description) 
+    public static int[] xakse;
+    {
+        xakse = new int[]{1, 2, 3, 4, 5};
+    }
+    public int[] yakse;
+
+    {
+        yakse = new int[]{1, 2, 3, 4, 5};
+    }
+
+    public Room(String description)
     {
         this.description = description;
         exits = new HashMap<String, Room>();
-    }
 
+    }
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
@@ -46,5 +54,16 @@ public class Room
     {
         return exits.get(direction);
     }
+
+
+
+    public int[] getYakse() {
+        return yakse;
+    }
+    public int[] getXakse() {
+        return xakse;
+    }
+
+
 }
 

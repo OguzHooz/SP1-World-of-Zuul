@@ -85,7 +85,7 @@ public class Game
             finished = processCommand(command);
         }
         //hvis spil afsluttet, udskriv denne linje
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Thank you for playing.  Goodbye.");
     }
 
     private void printWelcome()
@@ -121,6 +121,11 @@ public class Game
         else if (commandWord == CommandWord.GO) {
             goRoom(command);
         }
+        //flytter rundt inden i et rum
+        else if (commandWord == CommandWord.WALK) {
+            walkfunc(command);
+        }
+
         //sætter wantToQuit til at TRUE, det ville sige vi afslutter spillet
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
@@ -128,27 +133,28 @@ public class Game
         return wantToQuit;
     }
 
-    public static String walkfunc(Command command) {
+    public String walkfunc(Command command) {
         if(!command.hasSecondWord()) {
             System.out.println("Which way do you wanna walk?");
             System.out.println(command.getSecondWord());
             System.out.println(command.getCommandWord());
             }
+
         else if (command.getSecondWord().equals("north")){
             System.out.print("walking north");
-            return "north";
+            Player.moveYakse(1);
             }
         else if (command.getSecondWord().equals("east")) {
             System.out.print("walking east");
-            return "east";
+            Player.moveXakse(1);
             }
         else if (command.getSecondWord().equals("south")) {
             System.out.print("walking south");
-            return "south";
+            Player.moveYakse(-1);
             }
         else if (command.getSecondWord().equals("west")) {
             System.out.print("walking west");
-            return "west";
+            Player.moveXakse(-1);
             }
         else {
             System.out.print("not sure what you meant...");
@@ -201,3 +207,4 @@ public class Game
         }
     }
 }
+
