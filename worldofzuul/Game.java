@@ -136,28 +136,21 @@ public class Game
     public String walkfunc(Command command) {
         if(!command.hasSecondWord()) {
             System.out.println("Which way do you wanna walk?");
-            System.out.println(command.getSecondWord());
-            System.out.println(command.getCommandWord());
             }
-
-        else if (command.getSecondWord().equals("north")){
-            System.out.print("walking north");
+        else if (command.getSecondWord().equals("north") && Player.position[1] != 5){
             Player.moveYakse(1);
             }
-        else if (command.getSecondWord().equals("east")) {
-            System.out.print("walking east");
+        else if (command.getSecondWord().equals("east") && Player.position[0] != 5) {
             Player.moveXakse(1);
             }
-        else if (command.getSecondWord().equals("south")) {
-            System.out.print("walking south");
+        else if (command.getSecondWord().equals("south") && Player.position[1] != 0) {
             Player.moveYakse(-1);
             }
-        else if (command.getSecondWord().equals("west")) {
-            System.out.print("walking west");
+        else if (command.getSecondWord().equals("west") && Player.position[0] != 0) {
             Player.moveXakse(-1);
             }
         else {
-            System.out.print("not sure what you meant...");
+            System.out.print("\nYou either wrote something wrong or reached the border of the 5x5 room\n");
 
 
         }
@@ -175,10 +168,9 @@ public class Game
         parser.showCommands();
     }
 
-    private void goRoom(Command command) 
-    {
+    private void goRoom(Command command) {
         //Hvis du bare skriver "go" udskrives dette
-        if(!command.hasSecondWord()) {
+        if (!command.hasSecondWord()) {
             System.out.println("Go where?");
             return;
         }
@@ -189,11 +181,12 @@ public class Game
         //hvis der ikke er en exit den vej man har skrevet
         if (nextRoom == null) {
             System.out.println("There is no door!");
-        }
-        else { //hvis der en exit gem som nyt rum udskriv lang description
+        } else { //hvis der en exit gem som nyt rum udskriv lang description
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+            System.out.println(command.getSecondWord());
         }
+
     }
     //return true så man kan exit
     private boolean quit(Command command) 
