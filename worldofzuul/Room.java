@@ -8,34 +8,34 @@ import java.util.Iterator;
 
 public class Room 
 {
-    //TODO Så af en eller anden grund giver den samme food til alle rooms
     private final String description;
     private final HashMap<String, Room> exits;
     final int[] xakse = {1,2,3,4,5};
     final int[] yakse = {1,2,3,4,5};
     public boolean isDiscovered = false;
-    private static ArrayList<Integer> foodCoordinatex = null;
-    private static ArrayList<Integer> foodCoordinatey = null;
-    private static ArrayList<String> foodType = null;
-    private static ArrayList<Integer> foodAmount = null;
+    //arraylister er instanced
+    ArrayList<Integer> foodCoordinatex;
+    ArrayList<Integer> foodCoordinatey;
+    ArrayList<String> foodType;
+    ArrayList<Integer> foodAmount;
 
-    public static ArrayList<Integer> getFoodCoordinatex() {
-        return foodCoordinatex;
-    }
-
-    public static ArrayList<Integer> getFoodCoordinatey() {
-        return foodCoordinatey;
-    }
-
-    public static ArrayList<String> getFoodType() {
+    public ArrayList<String> getFoodType() {
         return foodType;
     }
 
-    public static ArrayList<Integer> getFoodAmount() {
+    public ArrayList<Integer> getFoodAmount() {
         return foodAmount;
     }
 
-    public Room(String description) 
+    public ArrayList<Integer> getFoodCoordinatey() {
+        return foodCoordinatey;
+    }
+
+    public ArrayList<Integer> getFoodCoordinatex() {
+        return foodCoordinatex;
+    }
+
+    public Room(String description)
     {
         this.description = description;
         exits = new HashMap<String, Room>();

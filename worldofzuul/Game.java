@@ -8,9 +8,7 @@ public class Game
     private Parser parser;
     //Gemmer det rum som man er i
     private Room currentRoom;
-    private static StringBuilder listString = new StringBuilder("You can find: ");
     //Opretter en del forskellige rooms med hver deres navn
-    Room center, northwesternSea, northernSea, northeasternSea, westernSea, easternSea, southwesternSea, southernSea, southeasternSea;
 
 
     public Game() 
@@ -24,6 +22,7 @@ public class Game
 
     private void createRooms()
     {
+        Room center, northwesternSea, northernSea, northeasternSea, westernSea, easternSea, southwesternSea, southernSea, southeasternSea;
 
         //Tilføjer descriptions til rooms
         center = new Room("In the middle of the sea");
@@ -83,7 +82,6 @@ public class Game
 
         //prints foodliste
         printFoodList(currentRoom);
-        System.out.println();
         System.out.println("You are currently standing on: [y:" + Player.getYkoordinat() + ", x:" + Player.getXkoordinat() + "] ");
         //Tjekker alle commandoer på nedenstående class, hvis der skrevet quit spring over
         boolean finished = false;
@@ -141,6 +139,7 @@ public class Game
         return wantToQuit;
     }
     public void printFoodList(Room room) {
+        StringBuilder listString = new StringBuilder("You can find: ");
         //loop through one of the coordinates (since they are put into array at the same point)
         for (int i = 0; i < room.getFoodCoordinatey().size(); i++) {
             if (i != 0){
@@ -149,6 +148,7 @@ public class Game
             listString.append(room.getFoodType().get(i)).append(" in: [y:").append(room.getFoodCoordinatey().get(i)).append(", x:").append(room.getFoodCoordinatex().get(i)).append("] Worth ").append(room.getFoodAmount().get(i)).append(" hunger");
         }
         System.out.println(listString + "\n");
+        listString.setLength(0);
     }
     public String walkfunc(Command command) {
         if (!command.hasSecondWord()) {
@@ -181,7 +181,7 @@ public class Game
     private void printHelp() {
         //udskriver hvor man er og hvilke kommandoer man kan bruge
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("around at the depths of the seas.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -207,31 +207,39 @@ public class Game
         else { //hvis der en exit gem som nyt rum udskriv lang description
             //before new room save food list
             //check hvilken vej man er gået
-            if (direction.equals("north") && Player.position[1] == 5){
-                Player.position[1] = 0;
+            if (direction.equals("north") && Player.getYkoordinat() == 5){
+                Player.setYkoordinat(0);
                 currentRoom = nextRoom;
                 System.out.println(currentRoom.getLongDescription());
-            } else if (direction.equals("south") && Player.position[1] == 0){
-                Player.position[1] = 5;
+                //print foodlist
+                printFoodList(currentRoom);
+                currentRoom.isDiscovered = true;
+            } else if (direction.equals("south") && Player.getYkoordinat() == 0){
+                Player.setYkoordinat(0);
                 currentRoom = nextRoom;
                 System.out.println(currentRoom.getLongDescription());
-            } else if (direction.equals("east") && Player.position[0] == 5){
-                Player.position[0] = 0;
+                //print foodlist
+                printFoodList(currentRoom);
+                currentRoom.isDiscovered = true;
+            } else if (direction.equals("east") && Player.getXkoordinat() == 5){
+                Player.setXkoordinat(0);
                 currentRoom = nextRoom;
                 System.out.println(currentRoom.getLongDescription());
-            } else if (direction.equals("west") && Player.position[0] == 0){
-                Player.position[0] = 5;
+                //print foodlist
+                printFoodList(currentRoom);
+                currentRoom.isDiscovered = true;
+            } else if (direction.equals("west") && Player.getXkoordinat() == 0){
+                Player.setXkoordinat(0);
                 currentRoom = nextRoom;
                 System.out.println(currentRoom.getLongDescription());
+                //print foodlist
+                printFoodList(currentRoom);
+                currentRoom.isDiscovered = true;
             } else {
                 System.out.println("You are too far from that border");
                 return;
             }
         }
-        //print foodlist
-        printFoodList(currentRoom);
-        currentRoom.isDiscovered = true;
-        System.out.println();
 
     }
     //return true så man kan exit
