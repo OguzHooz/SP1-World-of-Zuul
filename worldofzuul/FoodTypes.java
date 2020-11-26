@@ -1,4 +1,4 @@
-package Food;
+package worldofzuul;
 
 public enum FoodTypes {
     //bruger denne til at rette chancen for de andre
@@ -25,9 +25,15 @@ public enum FoodTypes {
         this.chance = chance;
     }
 
-    private String foodTypes(){return foodTypes;}
-    private int amount(){return amount;}
-    private double chance(){return chance;}
+    private String foodTypes(){
+        return foodTypes;
+    }
+    private int amount(){
+        return amount;
+    }
+    private double chance(){
+        return chance;
+    }
 
     public int getAmount() {
         return amount;
@@ -39,11 +45,5 @@ public enum FoodTypes {
 
     public String getFoodTypes() {
         return foodTypes;
-    }
-
-    private static final int length = FoodTypes.values().length;
-
-    public int getLength(){
-        return length;
     }
 }

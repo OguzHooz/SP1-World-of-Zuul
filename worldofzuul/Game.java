@@ -1,6 +1,6 @@
 package worldofzuul;
 
-import javax.swing.*;
+import java.util.ArrayList;
 
 public class Game
 {
@@ -8,7 +8,10 @@ public class Game
     private Parser parser;
     //Gemmer det rum som man er i
     private Room currentRoom;
-        
+    private static StringBuilder listString = new StringBuilder("You can find: ");
+    //Opretter en del forskellige rooms med hver deres navn
+    Room center, northwesternSea, northernSea, northeasternSea, westernSea, easternSea, southwesternSea, southernSea, southeasternSea;
+
 
     public Game() 
     {
@@ -21,8 +24,6 @@ public class Game
 
     private void createRooms()
     {
-        //Opretter en del forskellige rooms med hver deres navn
-        Room center, northwesternSea, northernSea, northeasternSea, westernSea, easternSea, southwesternSea, southernSea, southeasternSea;
 
         //Tilføjer descriptions til rooms
         center = new Room("In the middle of the sea");
@@ -71,6 +72,8 @@ public class Game
 
         //sætter startstedet af spillet
         currentRoom = center;
+        //currentroom is discovered
+        currentRoom.isDiscovered = true;
     }
 
     public void play() 
@@ -78,6 +81,10 @@ public class Game
         //Printer velkomst nedenfor
         printWelcome();
 
+        //prints foodliste
+        printFoodList(currentRoom);
+        System.out.println();
+        System.out.println("You are currently standing on: [y:" + Player.getYkoordinat() + ", x:" + Player.getXkoordinat() + "] ");
         //Tjekker alle commandoer på nedenstående class, hvis der skrevet quit spring over
         boolean finished = false;
         while (! finished) {
@@ -86,6 +93,7 @@ public class Game
         }
         //hvis spil afsluttet, udskriv denne linje
         System.out.println("Thank you for playing.  Good bye.");
+
     }
 
     private void printWelcome()
@@ -120,47 +128,57 @@ public class Game
         //flytter rum
         else if (commandWord == CommandWord.GO) {
             goRoom(command);
+        }//flytter rundt inden i et rum
+        else if (commandWord == CommandWord.WALK) {
+            walkfunc(command);
         }
         //sætter wantToQuit til at TRUE, det ville sige vi afslutter spillet
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
+        } else if (commandWord == CommandWord.FOODLIST){
+            printFoodList(currentRoom);
         }
         return wantToQuit;
     }
-
-    public static String walkfunc(Command command) {
-        if(!command.hasSecondWord()) {
-            System.out.println("Which way do you wanna walk?");
-            System.out.println(command.getSecondWord());
-            System.out.println(command.getCommandWord());
+    public void printFoodList(Room room) {
+        //loop through one of the coordinates (since they are put into array at the same point)
+        for (int i = 0; i < room.getFoodCoordinatey().size(); i++) {
+            if (i != 0){
+                listString.append("; ");
             }
-        else if (command.getSecondWord().equals("north")){
-            System.out.print("walking north");
-            return "north";
-            }
-        else if (command.getSecondWord().equals("east")) {
-            System.out.print("walking east");
-            return "east";
-            }
-        else if (command.getSecondWord().equals("south")) {
-            System.out.print("walking south");
-            return "south";
-            }
-        else if (command.getSecondWord().equals("west")) {
-            System.out.print("walking west");
-            return "west";
-            }
-        else {
-            System.out.print("not sure what you meant...");
-
-
+            listString.append(room.getFoodType().get(i)).append(" in: [y:").append(room.getFoodCoordinatey().get(i)).append(", x:").append(room.getFoodCoordinatex().get(i)).append("] Worth ").append(room.getFoodAmount().get(i)).append(" hunger");
         }
-    return "unknown";
-
+        System.out.println(listString + "\n");
+    }
+    public String walkfunc(Command command) {
+        if (!command.hasSecondWord()) {
+            System.out.println("Which way do you wanna walk?");
+        } else if (command.getSecondWord().equals("north") && Player.position[1] != 5) {
+            Player.moveYakse(1);
+        } else if (command.getSecondWord().equals("east") && Player.position[0] != 5) {
+            Player.moveXakse(1);
+        } else if (command.getSecondWord().equals("south") && Player.position[1] != 0) {
+            Player.moveYakse(-1);
+        } else if (command.getSecondWord().equals("west") && Player.position[0] != 0) {
+            Player.moveXakse(-1);
+        } else {
+            System.out.print("\nYou either wrote something wrong or reached the border of the 5x5 room\n");
+        }
+        for (int i = 0; i < currentRoom.getFoodCoordinatex().size(); i++){
+            if (Player.getXkoordinat() == currentRoom.getFoodCoordinatex().get(i) && Player.getYkoordinat() == currentRoom.getFoodCoordinatey().get(i)){
+                Player.setHunger(currentRoom.getFoodAmount().get(i));
+                System.out.println("You have picked up " + currentRoom.getFoodType().get(i) + ", your hunger has increased by " + currentRoom.getFoodAmount().get(i) + " and your hunger is now " + Player.getHunger());
+                currentRoom.getFoodCoordinatex().remove(i);
+                currentRoom.getFoodCoordinatey().remove(i);
+                currentRoom.getFoodAmount().remove(i);
+                currentRoom.getFoodType().remove(i);
+            }
+        }
+        return "unknown";
     }
 
-    private void printHelp() 
-    {
+
+    private void printHelp() {
         //udskriver hvor man er og hvilke kommandoer man kan bruge
         System.out.println("You are lost. You are alone. You wander");
         System.out.println("around at the university.");
@@ -169,25 +187,52 @@ public class Game
         parser.showCommands();
     }
 
-    private void goRoom(Command command) 
-    {
+    private void goRoom(Command command) {
         //Hvis du bare skriver "go" udskrives dette
-        if(!command.hasSecondWord()) {
+        if (!command.hasSecondWord()) {
             System.out.println("Go where?");
             return;
         }
         //direction er det om man har brugt south,east,west,north når man opretter rummet
         String direction = command.getSecondWord();
+
         //gemmer det næste rum som det nuværende i forhold hvilket direction man har gået til
         Room nextRoom = currentRoom.getExit(direction);
         //hvis der ikke er en exit den vej man har skrevet
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            System.out.println("There is no room this way");
+        } else if (!Player.onBorder()){
+            System.out.println("You are too far from the border");
         }
         else { //hvis der en exit gem som nyt rum udskriv lang description
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            //before new room save food list
+            //check hvilken vej man er gået
+            if (direction.equals("north") && Player.position[1] == 5){
+                Player.position[1] = 0;
+                currentRoom = nextRoom;
+                System.out.println(currentRoom.getLongDescription());
+            } else if (direction.equals("south") && Player.position[1] == 0){
+                Player.position[1] = 5;
+                currentRoom = nextRoom;
+                System.out.println(currentRoom.getLongDescription());
+            } else if (direction.equals("east") && Player.position[0] == 5){
+                Player.position[0] = 0;
+                currentRoom = nextRoom;
+                System.out.println(currentRoom.getLongDescription());
+            } else if (direction.equals("west") && Player.position[0] == 0){
+                Player.position[0] = 5;
+                currentRoom = nextRoom;
+                System.out.println(currentRoom.getLongDescription());
+            } else {
+                System.out.println("You are too far from that border");
+                return;
+            }
         }
+        //print foodlist
+        printFoodList(currentRoom);
+        currentRoom.isDiscovered = true;
+        System.out.println();
+
     }
     //return true så man kan exit
     private boolean quit(Command command) 

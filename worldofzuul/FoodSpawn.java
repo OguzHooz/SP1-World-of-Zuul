@@ -1,4 +1,4 @@
-package Food;
+package worldofzuul;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,9 @@ public class FoodSpawn<T extends Object> {
         double accumulatedWeight;
         T object;
     }
-    private List<Entry> entries = new ArrayList<>();
+    private final List<Entry> entries = new ArrayList<>();
     private double accumulatedWeight;
-    private Random rand = new Random();
-    //TODO tilføj amount (score)
+    private final Random rand = new Random();
     public void addEntry(T object, double weight){
         accumulatedWeight += weight;
         Entry e = new Entry();
