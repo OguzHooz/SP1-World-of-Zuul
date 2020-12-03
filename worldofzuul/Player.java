@@ -1,9 +1,21 @@
 package worldofzuul;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.HashMap;
 
 public class Player {
+
+    JFrame window;
+    JPanel healthBarPanel;
+    Container con;
+    JProgressBar healthBar;
+    int hp;
+
+
     //skal indsamles i starten på et tidspunkt
     String name;
     int Hunger;
@@ -48,6 +60,41 @@ public class Player {
         ykoordinat = y;
     }
 
+    {
+        healthBarPanel = new JPanel();
+        healthBarPanel.setBounds(250, 250, 300, 30);
+        healthBarPanel.setBackground(Color.orange);
+        con.add(healthBarPanel);
 
+        healthBar = new JProgressBar( 0,100);
+        healthBar.setPreferredSize(new Dimension(300, 30));
+        healthBar.setValue(100);
+        healthBarPanel.add(healthBar);
 
+        hp = 100;
+
+        window.setVisible(true);
+    }
+    public void damageReceived(){
+         hp = hp -5;
+         healthBar.setValue(hp);
+    }
+
+    public class DamageHandler implements ActionListener{
+        public void actionPerformed(ActionEvent event){
+            damageReceived();
+        }
+    }
+    public void cureReceived(){
+        boolean touchingfood = false; //Determines if we've
+        hp = hp++;
+        healthBar.setValue(hp);
+    }
+    //??????????
+
+    public class CureHandler implements ActionListener{
+        public void actionPerformed(ActionEvent event){
+            cureReceived();
+        }
+    }
 }
