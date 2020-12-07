@@ -7,7 +7,7 @@ public class Game
     //Her finder vi den som det teksbaseret spil skal forstå af kommandoer
     private Parser parser;
     //Gemmer det rum som man er i
-    private Room currentRoom;
+    public Room currentRoom;
     //Opretter en del forskellige rooms med hver deres navn
 
 

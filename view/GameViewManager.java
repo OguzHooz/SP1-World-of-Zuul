@@ -1,7 +1,10 @@
 package view;
 
-import application.Player;
+import application.PlayerGUI;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -14,8 +17,8 @@ public class GameViewManager {
     private Scene gameScene;
     private Stage gameStage;
 
-    private static final int GameWidth = 600;
-    private static final int GameHeight = 800;
+    public static final int GameWidth = 600;
+    public static final int GameHeight = 800;
 
     public GameViewManager(){
         initializeStage();
@@ -25,18 +28,23 @@ public class GameViewManager {
 
         gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
-            public void handle(javafx.scene.input.KeyEvent keyEvent) {
-                if(keyEvent.getCode() == KeyCode.W) {
-                    System.out.println("W is being pressed");
+            public void handle(javafx.scene.input.KeyEvent keyEvent)
+            {
+                if(keyEvent.getCode() == KeyCode.W)
+                {
+                    PlayerGUI.movePlayer("W");
                 }
-                else if(keyEvent.getCode() == KeyCode.A){
-                    System.out.println("A is being pressed");
+                else if(keyEvent.getCode() == KeyCode.A)
+                {
+                    PlayerGUI.movePlayer("A");
                 }
-                else if(keyEvent.getCode() == KeyCode.S){
-                    System.out.println("S is being pressed");
+                else if(keyEvent.getCode() == KeyCode.S)
+                {
+                    PlayerGUI.movePlayer("S");
                 }
-                else if(keyEvent.getCode() == KeyCode.D){
-                    System.out.println("D is being pressed");
+                else if(keyEvent.getCode() == KeyCode.D)
+                {
+                    PlayerGUI.movePlayer("D");
                 }
             }
         });
@@ -64,11 +72,18 @@ public class GameViewManager {
         gameScene = new Scene(gamePane,GameWidth,GameHeight);
         gameStage = new Stage();
         gameStage.setScene(gameScene);
+
+
+
+
+
     }
+
 
     public Stage getGameStage() {
         return gameStage;
     }
+
     
 
 }
