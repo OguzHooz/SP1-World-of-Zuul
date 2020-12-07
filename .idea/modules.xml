@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CrabGameGUI/CrabGameGUI.iml" filepath="$PROJECT_DIR$/CrabGameGUI/CrabGameGUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SP1-World-of-Zuul.iml" filepath="$PROJECT_DIR$/.idea/SP1-World-of-Zuul.iml" />
+    </modules>
+  </component>
+</project>
