@@ -162,7 +162,26 @@ public class Room
         }
         return returnString.toString();
     }
+    public class room {
+        // inputs are declared
+        private int x[]={1,0,1,0};
+        private double w[]={0.4,0.6,0.7,0.8};
+        private double co2=0;
 
+        private double z=0;
+        private int desiredOutput[]={0,1,1,1};
+
+        private double sigmoidOutput[]={1,1,1,1};
+
+        public void calculate(){
+            for(int i =0; i<4; i++){
+                co2=x[i]*w[i];
+                z+=co2;
+            }
+
+            double value=(1/(1+Math.exp(-z));
+        }
+    }
     public Room getExit(String direction) 
     {
         return exits.get(direction);
