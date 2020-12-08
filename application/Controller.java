@@ -4,12 +4,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import view.GameViewManager;
+
 
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.io.File;
-
+/*
 public class Controller implements Initializable {
     //Vi bruger disse til at spawne mad i, vi kan flytte deres position senere
     //så længe objektet er i fxml filen
@@ -43,8 +45,8 @@ public class Controller implements Initializable {
             arrayImage[i].setImage(new Image(currentImage.getPath()));
 
             //Sætter hvilket sted de skal spawne, både X og Y position
-            arrayImage[i].setLayoutX(new Random().nextInt(GameWidth));
-            arrayImage[i].setLayoutY(new Random().nextInt(GameHeight));
+            arrayImage[i].setLayoutX(new Random().nextInt(GameViewManager.GameWidth));
+            arrayImage[i].setLayoutY(new Random().nextInt(GameViewManager.GameHeight));
 
             //gør billedet synligt
             arrayImage[i].styleProperty().setValue("-fx-opacity: 100");
@@ -52,3 +54,4 @@ public class Controller implements Initializable {
     }
 
 }
+*/
