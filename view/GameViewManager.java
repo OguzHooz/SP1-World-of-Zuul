@@ -1,6 +1,7 @@
 package view;
-
+import javafx.application.Application;
 import application.PlayerGUI;
+import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -10,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
+import java.util.Timer;
+
 
 public class GameViewManager {
 
@@ -23,8 +26,10 @@ public class GameViewManager {
     public GameViewManager(){
         initializeStage();
         createKeyListeners();
+
+
     }
-    private void createKeyListeners (){
+    public void createKeyListeners (){
 
         gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -67,11 +72,20 @@ public class GameViewManager {
         }
     });
 }
-    private void initializeStage() {
+    public void initializeStage() {
         gamePane = new AnchorPane();
         gameScene = new Scene(gamePane,GameWidth,GameHeight);
         gameStage = new Stage();
         gameStage.setScene(gameScene);
+        Image img = new Image("resources/Crab.png");
+        ImageView imgView = new ImageView(img);
+        gamePane.getChildren().add(imgView);
+        gameLoop();
+
+
+
+
+
 
 
 
@@ -82,6 +96,21 @@ public class GameViewManager {
 
     public Stage getGameStage() {
         return gameStage;
+    }
+    private void gameLoop() {
+
+        // game loop
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+
+
+            }
+
+        };
+
+        timer.start();
+
     }
 
     
