@@ -10,8 +10,8 @@ public class SpriteBase {
     ImageView imageView;
 
     Pane layer;
-    double x;
-    double y;
+    static double x;
+    static double y;
     double r;
 
     double dx;
@@ -26,7 +26,7 @@ public class SpriteBase {
     double w;
     double h;
 
-    public SpriteBase(Pane layer, Image image, double x, double y, double r, double dx, double dy, double dr, double health, double damage)
+    public SpriteBase(Pane layer, Image image, double x, double y, double r, double dx)
     {
 
         this.layer = layer;

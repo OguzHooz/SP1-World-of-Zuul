@@ -19,6 +19,9 @@ public class GameViewManager {
     private AnchorPane gamePane;
     private Scene gameScene;
     private Stage gameStage;
+    Image Player = new Image("resources/Crab.png");
+    private ImageView playerView = new ImageView(Player);
+
 
     public static final int GameWidth = 600;
     public static final int GameHeight = 800;
@@ -58,16 +61,16 @@ public class GameViewManager {
         @Override
         public void handle(javafx.scene.input.KeyEvent keyEvent) {
             if(keyEvent.getCode() == KeyCode.W) {
-                System.out.println("W is no longer being pressed");
+
             }
             else if(keyEvent.getCode() == KeyCode.A){
-                System.out.println("A is no longer being pressed");
+
             }
             else if(keyEvent.getCode() == KeyCode.S){
-                System.out.println("S is no longer being pressed");
+
             }
             else if(keyEvent.getCode() == KeyCode.D){
-                System.out.println("D is no longer being pressed");
+
             }
         }
     });
@@ -77,41 +80,46 @@ public class GameViewManager {
         gameScene = new Scene(gamePane,GameWidth,GameHeight);
         gameStage = new Stage();
         gameStage.setScene(gameScene);
-        Image img = new Image("resources/Crab.png");
-        ImageView imgView = new ImageView(img);
-        gamePane.getChildren().add(imgView);
+        createPlayer();
         gameLoop();
-
-
-
-
-
-
-
-
-
-
     }
 
 
     public Stage getGameStage() {
         return gameStage;
     }
+
     private void gameLoop() {
 
         // game loop
-        AnimationTimer timer = new AnimationTimer() {
+        AnimationTimer timer = new AnimationTimer()
+        {
             @Override
-            public void handle(long l) {
-
-
+            public void handle(long l)
+            {
+                setXCoord(PlayerGUI.playerPosX);
+                setYCoord(PlayerGUI.playerPosY);
             }
-
         };
-
         timer.start();
 
     }
+    public void createPlayer()
+    {
+        gamePane.getChildren().add(playerView);
+        playerView.setPreserveRatio(true);
+        playerView.setFitHeight(64);
+        playerView.setFitWidth(64);
+    }
+    public void setXCoord(int a)
+    {
+        playerView.setX(a);
+    }
+    public void setYCoord(int a)
+    {
+        playerView.setY(a);
+    }
+
 
     
 

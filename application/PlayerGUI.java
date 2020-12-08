@@ -1,23 +1,25 @@
 package application;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import view.GameViewManager;
 
 public class PlayerGUI extends SpriteBase
 {
-    double playerPosMinX;
-    double playerPosMaxX;
-    double playerPosMinY;
-    double playerPosMaxY;
+    public String playerSprite = "resources/Crab.png";
+    static int playerPosMinX;
+    static int playerPosMaxX;
+    static int playerPosMinY;
+    static int playerPosMaxY;
     double speed;
 
     public static int playerPosX;
     public static int playerPosY;
 
 
-    public PlayerGUI(Pane layer, Image image, double x, double y, double r, double dx, double dy, double dr, double health, double damage, double speed) {
-        super(layer, image, x, y, r, dx, dy, dr, health, damage);
+    public PlayerGUI(Pane layer, Image image, double x, double y, double health, double damage, double speed) {
+        super(layer, image, x, y, health, damage);
 
         this.speed = speed;
         init();
@@ -25,33 +27,40 @@ public class PlayerGUI extends SpriteBase
     private void init(){
         //udregn movement bounds for player
         // bruger /2 for at halvdelen fra midten af krabbe spriten kan være ude af vinduet.
-        playerPosMinX = 0 - image.getWidth() / 2.0;
-        playerPosMaxX = GameViewManager.GameWidth - image.getWidth() / 2.0;
-        playerPosMinY = 0 - image.getHeight() / 2.0;
-        playerPosMaxY = GameViewManager.GameHeight - image.getHeight() / 2.0;
+        playerPosMinX = (int) (0 - image.getWidth() / 2);
+        playerPosMaxX = (int) (GameViewManager.GameWidth - image.getWidth() / 2);
+        playerPosMinY = (int) (0 - image.getHeight() / 2);
+        playerPosMaxY = (int) (GameViewManager.GameHeight - image.getHeight() / 2);
+    }
+    private static void checkBounds()
+    {
+        if (playerPosY < playerPosMinY)
+        {
+            playerPosY = playerPosMinY;
+        }    else if(x > playerPosMaxY)
+            {
+            playerPosY = playerPosMaxY;
+            }
+        if (playerPosX < playerPosMinX)
+        {
+            playerPosX = playerPosMinX;
+        }    else if(x > playerPosMaxY)
+            {
+            playerPosX = playerPosMaxY;
+            }
     }
 
-    private void checkBounds()
-    {
-        if (Double.compare(y, playerPosMinY) < 0) {
-            y = playerPosMinY;
-        }    else if(Double.compare(x, playerPosMaxY) > 0){
-            y = playerPosMaxY;
-            }
-        if (Double.compare(x, playerPosMinX) < 0) {
-            x = playerPosMinX;
-        }    else if(Double.compare(x, playerPosMaxY) > 0){
-            x = playerPosMaxY;
-        }
-    }
     public static void movePlayer(String retning)
     {
+        checkBounds();
         switch (retning) {
-            case "W" -> playerPosY = playerPosY + 10; 
-            case "S" -> playerPosY = playerPosY - 10;
-            case "A" -> playerPosX = playerPosX - 10;
-            case "D" -> playerPosX = playerPosX + 10;
+
+            case "W" -> playerPosY = playerPosY - 5;
+            case "S" -> playerPosY = playerPosY + 5;
+            case "A" -> playerPosX = playerPosX - 5;
+            case "D" -> playerPosX = playerPosX + 5;
         }
 
     }
+
 }
