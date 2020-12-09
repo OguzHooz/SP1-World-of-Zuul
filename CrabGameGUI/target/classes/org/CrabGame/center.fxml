@@ -4,14 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.CrabGame.centerController">
-    <children>
-        <ImageView fx:id="Background" fitHeight="720.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../Images/placeholder.jpeg" />
-            </image>
-        </ImageView>
-    </children>
+<Pane prefHeight="720.0" prefWidth="960.0" styleClass="anchor" stylesheets="@../CSS/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.CrabGame.centerController">
     <Pane fx:id="spawnPane" layoutX="109.0" layoutY="32.0" prefHeight="597.0" prefWidth="795.0">
         <children>
             <ImageView fx:id="f1" fitHeight="50.0" fitWidth="85.0" layoutX="14.0" layoutY="483.0" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -34,16 +27,22 @@
                     <Image url="@../Images/placeholder.jpeg" />
                 </image>
             </ImageView>
-            <ImageView fx:id="f5" fitHeight="50.0" fitWidth="85.0" layoutX="14.0" layoutY="533.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="f5" fitHeight="50.0" fitWidth="323.0" pickOnBounds="true" preserveRatio="true" visible="false">
                 <image>
-                    <Image url="@../Images/placeholder.jpeg" />
+                          <Image url="@../Images/placeholder.jpeg" />
                 </image>
             </ImageView>
         </children>
     </Pane>
-   <Pane prefHeight="720.0" prefWidth="960.0">
+    <Pane>
+
+    </Pane>
+   <Pane prefHeight="721.3333333333334" prefWidth="962.0" scaleShape="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
          <Circle fill="Aquamarine" layoutX="114.0" layoutY="114.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
       </children>
    </Pane>
-</AnchorPane>
+   <Pane fx:id="debugLayer" prefHeight="720.0" prefWidth="960.0">
+
+   </Pane>
+</Pane>

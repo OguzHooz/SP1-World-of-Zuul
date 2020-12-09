@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.CrabGame.northwesternSeaController">
+<AnchorPane prefHeight="720.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.CrabGame.centerController">
     <children>
         <ImageView fx:id="Background" fitHeight="720.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -45,7 +45,6 @@
     <Pane prefHeight="720.0" prefWidth="960.0">
         <children>
             <Circle fill="Aquamarine" layoutX="114.0" layoutY="114.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-         <ProgressBar fx:id="HPBar" layoutX="380.0" layoutY="662.0" prefWidth="200.0" progress="0.85" />
         </children>
     </Pane>
 </AnchorPane>
