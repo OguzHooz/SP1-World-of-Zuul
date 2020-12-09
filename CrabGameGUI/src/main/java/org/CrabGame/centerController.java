@@ -2,11 +2,13 @@ package org.CrabGame;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -25,38 +27,34 @@ public class centerController extends AnchorPane implements Initializable{
     @FXML
     private ImageView f5;
 
+    private ArrayList<ImageView> arrayImage;
+
 
     //opretter array der indeholder mad billeder
-    private ImageView[] arrayImage;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //putter f1,f2,f3 i array
-        arrayImage = new ImageView[]{f1,f2,f3,f4,f5};
+        arrayImage = new ArrayList<>();
+        arrayImage.add(f1);
+        arrayImage.add(f2);
+        arrayImage.add(f3);
+        arrayImage.add(f4);
+        arrayImage.add(f5);
         //Vi tager fat i det rum vi er i
         Room currentRoom = Game.getCurrentRoom();
         //så skal vi gå i gennem hvert stykke mad og sætte billed på f1,f2 eller f3
         //i forhold til hvilket stykke mad der er spawnet
-        for (int i = 0; i < currentRoom.foodCoordinatex.size(); i++){
+        for (int i = 0; i < currentRoom.getFoodCoordinatex().size(); i++){
             //sætter billed id
-            arrayImage[i].setId(currentRoom.foodType.get(i));
-            //opretter sti til billedet ud fra mad typens navn inde i vores enum
-            //File currentImage = new File("file:///" + System.getProperty("user.dir") + "/src/billeder" + currentRoom.foodType + ".png");
-            //Sætter billedet fra stien vi lige har oprettet
-            //arrayImage[i].setImage(new Image(currentImage.getPath()));
+            arrayImage.get(i).setId(currentRoom.getFoodType().get(i));
+            //the image is added to the jar, access it via getResource
+            arrayImage.get(i).setImage(new Image(getClass().getResource("/org/Images/"+ currentRoom.getFoodType().get(i).toUpperCase() +".png").toExternalForm()));
 
             //Sætter hvilket sted de skal spawne, både X og Y position
-            arrayImage[i].setLayoutX(new Random().nextInt(795));
-            arrayImage[i].setLayoutY(new Random().nextInt(597));
-
-            //gør billedet synligt
-            arrayImage[i].setVisible(true);
-            arrayImage[i].managedProperty().bind(arrayImage[i].visibleProperty());
+            arrayImage.get(i).setLayoutX(new Random().nextInt(795));
+            arrayImage.get(i).setLayoutY(new Random().nextInt(597));
         }
         //spiller bevægelse her i guess
 
-    }
-
-    public ImageView getF1() {
-        return f1;
     }
 }

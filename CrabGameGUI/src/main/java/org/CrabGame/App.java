@@ -6,6 +6,8 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -20,11 +22,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("center"), Settings.GAME_HEIGHT, Settings.GAME_WIDTH);
         //starter med hvilken scene vi gerne ville have (burde være start skærmen)
-        //altså er det her vi starter spillet
-        //scene = new Scene(loadFXML("center"), Settings.GAME_HEIGHT,Settings.GAME_WIDTH);
-
+        scene = new Scene(loadFXML("center"), Settings.GAME_HEIGHT, Settings.GAME_WIDTH);
         //Titlen til vinduet der bliver åbnet
         stage.setTitle("The Crab Game");
         //load vores start skærm

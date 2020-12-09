@@ -58,47 +58,47 @@ public class Room {
                         foodCoordinatey.add(i);
                         switch (e) {
                             case "FUNGI" -> {
-                                foodType.add("A fungi");
+                                foodType.add("FUNGI");
                                 foodAmount.add(FoodTypes.FUNGI.getAmount());
                             }
                             case "BACTERIA" -> {
-                                foodType.add("Some bacteria");
+                                foodType.add("BACTERIA");
                                 foodAmount.add(FoodTypes.BACTERIA.getAmount());
                             }
                             case "BARNACLES" -> {
-                                foodType.add("A barnacle");
+                                foodType.add("BARNACLES");
                                 foodAmount.add(FoodTypes.BARNACLES.getAmount());
                             }
                             case "DETRITUS" -> {
-                                foodType.add("Some detritus");
+                                foodType.add("DETRITUS");
                                 foodAmount.add(FoodTypes.DETRITUS.getAmount());
                             }
                             case "WORMS" -> {
-                                foodType.add("Some worms");
+                                foodType.add("WORMS");
                                 foodAmount.add(FoodTypes.WORMS.getAmount());
                             }
                             case "PLANKTON" -> {
-                                foodType.add("Some plankton");
+                                foodType.add("PLANKTON");
                                 foodAmount.add(FoodTypes.PLANKTON.getAmount());
                             }
                             case "KRILL" -> {
-                                foodType.add("A few krill");
+                                foodType.add("KRILL");
                                 foodAmount.add(FoodTypes.KRILL.getAmount());
                             }
                             case "TURTLE_HATCHLING" -> {
-                                foodType.add("Some turtle hatchlings");
+                                foodType.add("TURTLE_HATCHLING");
                                 foodAmount.add(FoodTypes.TURTLE_HATCHLING.getAmount());
                             }
                             case "MOLLUSCS" -> {
-                                foodType.add("A mollusc");
+                                foodType.add("MOLLUSCS");
                                 foodAmount.add(FoodTypes.MOLLUSCS.getAmount());
                             }
                             case "SHRIMP" -> {
-                                foodType.add("A shrimp");
+                                foodType.add("SHRIMP");
                                 foodAmount.add(FoodTypes.SHRIMP.getAmount());
                             }
                             case "CRAYFISH" -> {
-                                foodType.add("A crayfish");
+                                foodType.add("CRAYFISH");
                                 foodAmount.add(FoodTypes.CRAYFISH.getAmount());
                             }
                         }

@@ -2,6 +2,8 @@ package org.CrabGame;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -29,10 +31,16 @@ public class gameLoop {
         //tilføj label under debuglayer
         debugLayer.getChildren().add(debugLabel);
 
+        ImageView debugImageview = new ImageView();
+        Image debugImage = new Image("file:src/main/java/org.CrabGame/BACTERIA.png", 128, 128, false, false);
+        debugImageview.setImage(debugImage);
+        debugLayer.getChildren().add(debugImageview);
+
         //lidt styling til debuglayer
         debugLayer.setStyle("-fx-background-color: rgba(0,0,0,0.3)");
         debugLayer.prefWidthProperty().bind(App.getRootscene().widthProperty());
         debugLayer.layoutYProperty().bind(App.getRootscene().heightProperty().subtract(debugLayer.heightProperty()));
+
     }
     private static void updateFps(){
         frameCount++;
