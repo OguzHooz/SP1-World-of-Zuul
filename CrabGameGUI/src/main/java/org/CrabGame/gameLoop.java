@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.util.List;
 
 public class gameLoop {
     private static AnimationTimer gameLoop;
@@ -56,19 +57,23 @@ public class gameLoop {
     }
 
 
+
     public static void createGameLoop(){
         gameLoop = new AnimationTimer() {
             @Override
             public void handle(long l) {
                 // player AI (input)
-
+                App.playerList.forEach(crab -> Crab.processInput());
                 // sprite AI
+
 
                 // add sprites
 
                 // move sprites internally
+                App.playerList.forEach(crab -> Crab.move());
 
                 // move sprites in the UI
+                App.playerList.forEach(crab -> SpriteBase.updateUI());
 
                 // check if sprites can be removed
 

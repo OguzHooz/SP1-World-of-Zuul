@@ -27,11 +27,6 @@
     <Pane>
 
     </Pane>
-   <Pane prefHeight="721.3333333333334" prefWidth="962.0" scaleShape="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <children>
-         <Circle fill="Aquamarine" layoutX="114.0" layoutY="114.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-      </children>
-   </Pane>
    <Pane fx:id="debugLayer" prefHeight="720.0" prefWidth="960.0">
 
    </Pane>
