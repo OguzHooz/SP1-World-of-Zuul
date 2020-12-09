@@ -24,10 +24,10 @@ public class Crab extends SpriteBase {
     private void init() {
         // calculate movement bounds of the player ship
         // allow half of the ship to be outside of the screen
-        CrabMinX = 0 - image.getWidth() / 2.0;
-        CrabMaxX = Settings.GAME_WIDTH - image.getWidth() / 2.0;
-        CrabMinY = 0 - image.getHeight() / 2.0;
-        CrabMaxY = Settings.GAME_HEIGHT -image.getHeight() / 2.0;
+        CrabMinX = 0;
+        CrabMaxX = Settings.GAME_WIDTH;
+        CrabMinY = 0;
+        CrabMaxY = Settings.GAME_HEIGHT;
     }
 
     public static void processInput(){
@@ -76,7 +76,13 @@ public class Crab extends SpriteBase {
         }
 
     }
+    public static double getX() {
+        return x;
+    }
 
+    public static double getY() {
+        return y;
+    }
 
     @Override
     public void checkRemovability() {

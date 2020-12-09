@@ -1,6 +1,7 @@
 package org.CrabGame;
 
 import javafx.animation.AnimationTimer;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,6 +9,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class gameLoop {
@@ -63,19 +67,27 @@ public class gameLoop {
             @Override
             public void handle(long l) {
                 // player AI (input)
-                App.playerList.forEach(crab -> Crab.processInput());
+                App.player.processInput();
                 // sprite AI
 
 
                 // add sprites
 
                 // move sprites internally
-                App.playerList.forEach(crab -> Crab.move());
+                App.player.move();
+                for (Node n : App.getRootscene().getChildren()){
+                    if ("food".equals(n.getUserData())){
+                        if (App.player.getY() < n.getLayoutY()){
+                            n.setDisable(true);
+                        }
+                    }
+                }
 
                 // move sprites in the UI
-                App.playerList.forEach(crab -> SpriteBase.updateUI());
+                App.player.updateUI();
 
                 // check if sprites can be removed
+                if (App.player.getY() > Settings.GAME_WIDTH)
 
                 // update debug information
                 updateFps();

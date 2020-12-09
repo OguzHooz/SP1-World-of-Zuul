@@ -24,6 +24,7 @@ public class Input {
     private KeyCode downKey = KeyCode.S;
     private KeyCode leftKey = KeyCode.A;
     private KeyCode rightKey = KeyCode.D;
+    private KeyCode EatFood = KeyCode.SPACE;
 
     Scene scene;
 
@@ -81,6 +82,9 @@ public class Input {
 
     public boolean isMoveRight() {
         return keyboardBitSet.get( rightKey.ordinal()) && !keyboardBitSet.get( leftKey.ordinal());
+    }
+    public boolean isEat(){
+        return keyboardBitSet.get(EatFood.ordinal());
     }
 
 

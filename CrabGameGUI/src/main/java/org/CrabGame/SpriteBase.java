@@ -78,6 +78,14 @@ public abstract class SpriteBase {
 
     }
 
+    public static double getX() {
+        return x;
+    }
+
+    public static double getY() {
+        return y;
+    }
+
     public abstract void checkRemovability();
 
     // -----------------------------------------

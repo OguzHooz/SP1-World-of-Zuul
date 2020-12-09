@@ -23,7 +23,7 @@ public class App extends Application {
     private static Scene scene;
     private static Pane rootscene;
     private static Pane playfieldLayer;
-    public static List playerList = new ArrayList<>();
+    public static Crab player;
     private static Image playerImage;
 
     @Override
@@ -66,8 +66,7 @@ public class App extends Application {
         double x = (Settings.GAME_WIDTH - playerImage.getWidth())/2.0;
         double y = Settings.GAME_HEIGHT * 0.7;
 
-        Crab player = new Crab(playfieldLayer,playerImage,x,y,0,0,0,0,Settings.PLAYER_HEALTH,0,Settings.PLAYER_SPEED, input);
-        playerList.add(player);
+        player = new Crab(playfieldLayer,playerImage,x,y,0,0,0,0,Settings.PLAYER_HEALTH,0,Settings.PLAYER_SPEED, input);
     }
 
     //sætter root for scenen, så den ved hvilken fil der skal vises
