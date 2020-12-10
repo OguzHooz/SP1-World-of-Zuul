@@ -26,12 +26,11 @@ public class App extends Application {
         playfieldLayer = new Pane();
         //playfieldLayer.setPrefSize(Settings.GAME_HEIGHT, Settings.GAME_HEIGHT);
         playfieldLayer.setPrefSize(Settings.GAME_WIDTH, Settings.GAME_HEIGHT);
-        playfieldLayer.setStyle("-fx-background-color: blue");
-        playfieldLayer.setLayoutX(16);
-        playfieldLayer.setLayoutY(16);
+        //playfieldLayer.setStyle("-fx-background-color: blue");
+
 
         //starter med hvilken scene vi gerne ville have (burde være start skærmen)
-        scene = new Scene(loadFXML("center"), Settings.GAME_HEIGHT, Settings.GAME_WIDTH);
+        scene = new Scene(loadFXML("center"),Settings.GAME_WIDTH, Settings.GAME_HEIGHT );
         rootscene.getChildren().add(playfieldLayer);
         //Titlen til vinduet der bliver åbnet
         stage.setTitle("The Crab Game");

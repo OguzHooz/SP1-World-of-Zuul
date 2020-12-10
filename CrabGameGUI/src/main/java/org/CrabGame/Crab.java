@@ -23,10 +23,10 @@ public class Crab extends SpriteBase {
 
     private void init() {
         // calculate movement bounds of the player crab
-        CrabMinX = 0;
-        CrabMaxX = Settings.GAME_WIDTH ;
-        CrabMinY = 0;
-        CrabMaxY = Settings.GAME_HEIGHT;
+        CrabMinX = 0 - (image.getHeight() / 2);
+        CrabMaxX = Settings.GAME_WIDTH-(image.getWidth() / 2);
+        CrabMinY = 0 - (image.getHeight() / 2);
+        CrabMaxY = Settings.GAME_HEIGHT-(image.getHeight() / 2);
     }
 
     public static void processInput(){
