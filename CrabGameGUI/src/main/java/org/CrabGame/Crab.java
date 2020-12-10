@@ -24,9 +24,9 @@ public class Crab extends SpriteBase {
     private void init() {
         // calculate movement bounds of the player crab
         CrabMinX = 0;
-        CrabMaxX = (Settings.GAME_WIDTH - image.getWidth());
+        CrabMaxX = Settings.GAME_WIDTH ;
         CrabMinY = 0;
-        CrabMaxY = (Settings.GAME_HEIGHT - image.getHeight());
+        CrabMaxY = Settings.GAME_HEIGHT;
     }
 
     public static void processInput(){
@@ -61,16 +61,17 @@ public class Crab extends SpriteBase {
     private static void checkBounds() {
 
         // vertical
-        if( Double.compare( y, CrabMinY) == 0) {
+        if( Double.compare( y, CrabMinY) < 0) {
+            // public static int compare(double d1, double d2) -> 0 : d1 = d2, -n : d1 > d2, +n : d1 < d2
             y = CrabMinY;
-        } else if( Double.compare(y, CrabMaxY) == 0) {
+        } else if( Double.compare(y, CrabMaxY) > 0) {
             y = CrabMaxY;
         }
 
         // horizontal
-        if( Double.compare( x, CrabMinX) == 0) {
+        if( Double.compare( x, CrabMinX) < 0) {
             x = CrabMinX;
-        } else if( Double.compare(x, CrabMaxX) == 0) {
+        } else if( Double.compare(x, CrabMaxX) > 0) {
             x = CrabMaxX;
         }
 

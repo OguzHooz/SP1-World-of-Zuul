@@ -149,7 +149,7 @@ public class gameLoop {
                 App.player.updateUI();
 
                 // check if sprites can be removed
-                moveScene(App.player.getX(),App.player.getY());
+               // moveScene(App.player.getX(),App.player.getY());
 
                 // update debug information
                 //updateFps();

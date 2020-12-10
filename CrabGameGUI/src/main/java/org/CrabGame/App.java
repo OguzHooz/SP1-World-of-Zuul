@@ -25,10 +25,10 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         playfieldLayer = new Pane();
         //playfieldLayer.setPrefSize(Settings.GAME_HEIGHT, Settings.GAME_HEIGHT);
-        playfieldLayer.setPrefSize(Settings.GAME_HEIGHT-Settings.SPAWNPANE_HEIGHT,Settings.GAME_WIDTH-Settings.SPAWNPANE_WIDTH);
-        playfieldLayer.layoutXProperty().setValue(83);
-        playfieldLayer.layoutYProperty().setValue(62);
+        playfieldLayer.setPrefSize(Settings.GAME_WIDTH, Settings.GAME_HEIGHT);
         playfieldLayer.setStyle("-fx-background-color: blue");
+        playfieldLayer.setLayoutX(16);
+        playfieldLayer.setLayoutY(16);
 
         //starter med hvilken scene vi gerne ville have (burde være start skærmen)
         scene = new Scene(loadFXML("center"), Settings.GAME_HEIGHT, Settings.GAME_WIDTH);
