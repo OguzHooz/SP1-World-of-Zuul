@@ -1,6 +1,7 @@
 package org.CrabGame;
 
 import javafx.animation.AnimationTimer;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -56,15 +57,15 @@ public class gameLoop {
     }
 
     private static void moveScene(double x, double y){
-        //til højre
-        if (Double.compare(x, 0) == 0){
+        //til venstre
+        if (x == Crab.getCrabMinX()){
             Room nextRoom = Game.getCurrentRoom().getExit("west");
             if (nextRoom == null){
                 System.out.println("there is no way");
             } else {
                 try {
                     App.setRoot(Game.getCurrentRoom().getRoomName());
-                    App.player.setX(Settings.GAME_WIDTH+10);
+                    App.player.setX(Settings.GAME_WIDTH-32);
                     Game.setCurrentRoom(nextRoom);
                     Game.getCurrentRoom().isDiscovered = true;
                     App.getRootscene().getChildren().add(App.playfieldLayer);
@@ -73,8 +74,8 @@ public class gameLoop {
                 }
             }
         }
-        //til venstre
-        if (Double.compare(x, Settings.GAME_WIDTH) == 0){
+        //til højre
+        if (x == Crab.getCrabMaxX()){
             Room nextRoom = Game.getCurrentRoom().getExit("east");
             if (nextRoom == null){
                 System.out.println("there is no way");
@@ -90,15 +91,15 @@ public class gameLoop {
                 }
             }
         }
-        //bunden
-        if (Double.compare(y, 0) == 0){
+        //til nord
+        if (y == Crab.getCrabMinY()){
             Room nextRoom = Game.getCurrentRoom().getExit("north");
             if (nextRoom == null){
                 System.out.println("there is no way");
             } else {
                 try {
                     App.setRoot(Game.getCurrentRoom().getRoomName());
-                    App.player.setY(Settings.GAME_HEIGHT-10);
+                    App.player.setY(Settings.GAME_HEIGHT-32);
                     Game.setCurrentRoom(nextRoom);
                     Game.getCurrentRoom().isDiscovered = true;
                     App.getRootscene().getChildren().add(App.playfieldLayer);
@@ -107,14 +108,14 @@ public class gameLoop {
                 }
             }
         }
-        if (Double.compare(y, Settings.GAME_HEIGHT) == 0){
+        if (y == Crab.getCrabMaxY()){
             Room nextRoom = Game.getCurrentRoom().getExit("south");
             if (nextRoom == null){
                 System.out.println("there is no way");
             } else {
                 try {
                     App.setRoot(Game.getCurrentRoom().getRoomName());
-                    App.player.setY(10);
+                    App.player.setY(32);
                     Game.setCurrentRoom(nextRoom);
                     Game.getCurrentRoom().isDiscovered = true;
                     App.getRootscene().getChildren().add(App.playfieldLayer);
@@ -137,23 +138,28 @@ public class gameLoop {
 
                 // move sprites internally
                 App.player.move();
-                /*for (Node n : App.getRootscene().getChildren()){
+                for (Node n : App.getRootscene().getChildren()){
+                    System.out.println("Y: " + App.player.getY());
+                    System.out.println("X: " + App.player.getX());
+                    System.out.println("Billede Y:" +n.getLayoutBounds());
+                    System.out.println("Billede X:" +n.getLayoutX());
                     if ("food".equals(n.getUserData())){
-                        if (App.player.getY() < n.getLayoutY()){
-                            n.setDisable(true);
-                        }
+                        /*if ((n.getLayoutY() )){
+                           n.setVisible(false);
+                            System.out.println("usynlig");
+                        }*/
                     }
-                }*/
+                }
 
                 // move sprites in the UI
                 App.player.updateUI();
 
                 // check if sprites can be removed
-               // moveScene(App.player.getX(),App.player.getY());
+               moveScene(App.player.getX(),App.player.getY());
 
                 // update debug information
-                //updateFps();
-                //updateDebugOverlay();
+                updateFps();
+                updateDebugOverlay();
 
 
             }

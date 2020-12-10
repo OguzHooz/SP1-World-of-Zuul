@@ -63,9 +63,8 @@ public abstract class SpriteBase {
         x+=dx;
         y += dy;
         r += dr;
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println(Crab.getCrabMaxX());
+
+
     }
 
     public boolean isAlive() {

@@ -42,7 +42,7 @@ public class App extends Application {
 
         loadResources();
         createLevel(scene);
-        //gameLoop.createDebugOverlay();
+        gameLoop.createDebugOverlay();
         gameLoop.createGameLoop();
         gameLoop.startGame();
     }
