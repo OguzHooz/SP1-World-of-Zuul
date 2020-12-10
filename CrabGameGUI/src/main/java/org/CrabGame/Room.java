@@ -53,11 +53,19 @@ public class Room {
                     if (!e.equals("NOTHING")) {
                         spawnFood = true;
                     }
+
                     //tjekker om spawnfood er sand
                     if (spawnFood) {
                         //hvis der ikke allerede er dette
-                        foodCoordinatex.add(j);
-                        foodCoordinatey.add(i);
+                        if (foodCoordinatex.size() < j) {
+                            double randdoubl = Math.random()*(Crab.getCrabMaxX()/foodCoordinatex.size());
+                            for (int x = 0; x > Crab.getCrabMinX() && x < Crab.getCrabMaxX();x+=(randdoubl)) {
+                                foodCoordinatex.add(x);
+                            }
+                            double randdoubl1 = Math.random()*(Crab.getCrabMaxY()/foodCoordinatey.size());
+                            for (int y = 0; y > Crab.getCrabMinY() && y < Crab.getCrabMaxY();y+=(randdoubl1)) {
+                                foodCoordinatey.add(y);
+                        }}
                         switch (e) {
                             case "FUNGI" -> {
                                 foodType.add("FUNGI");
