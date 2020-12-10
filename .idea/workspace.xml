@@ -37,6 +37,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/CrabGameGUI/src/main/resources/org/CrabGame" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -51,6 +52,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\CStil\Desktop\Software Ingeniør\Projekt\SP1-World-of-Zuul\CrabGameGUI\src\main\resources\org\CrabGame" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\CStil\Desktop\Software Ingeniør\Projekt\SP1-World-of-Zuul\CrabGameGUI\src\main\resources\org\Images" />
       <recent name="C:\Users\CStil\Desktop\Software Ingeniør\Projekt\SP1-World-of-Zuul\CrabGameGUI\src\main\java\org\CrabGame" />
@@ -85,19 +89,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -115,6 +106,7 @@
       <updated>1607319014184</updated>
       <workItem from="1607319018038" duration="21277000" />
       <workItem from="1607420330285" duration="33118000" />
+      <workItem from="1607558576285" duration="15298000" />
     </task>
     <servers />
   </component>
@@ -130,22 +122,26 @@
       <screen x="0" y="0" width="2560" height="1409" />
     </state>
     <state x="1732" y="414" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1409@0.0.2560.1409" timestamp="1607504291993" />
-    <state width="1235" height="295" key="GridCell.Tab.0.bottom" timestamp="1607506549008">
-      <screen x="0" y="0" width="2560" height="1409" />
+    <state width="1877" height="292" key="GridCell.Tab.0.bottom" timestamp="1607579590824">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1235" height="295" key="GridCell.Tab.0.bottom/0.0.2560.1409@0.0.2560.1409" timestamp="1607506549008" />
-    <state width="1235" height="295" key="GridCell.Tab.0.center" timestamp="1607506549008">
-      <screen x="0" y="0" width="2560" height="1409" />
+    <state width="1877" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1607579590824" />
+    <state width="1236" height="292" key="GridCell.Tab.0.bottom/0.0.2560.1409@0.0.2560.1409" timestamp="1607576556114" />
+    <state width="1877" height="292" key="GridCell.Tab.0.center" timestamp="1607579590824">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1235" height="295" key="GridCell.Tab.0.center/0.0.2560.1409@0.0.2560.1409" timestamp="1607506549008" />
-    <state width="1235" height="295" key="GridCell.Tab.0.left" timestamp="1607506549008">
-      <screen x="0" y="0" width="2560" height="1409" />
+    <state width="1877" height="292" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1607579590824" />
+    <state width="1236" height="292" key="GridCell.Tab.0.center/0.0.2560.1409@0.0.2560.1409" timestamp="1607576556114" />
+    <state width="1877" height="292" key="GridCell.Tab.0.left" timestamp="1607579590824">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1235" height="295" key="GridCell.Tab.0.left/0.0.2560.1409@0.0.2560.1409" timestamp="1607506549008" />
-    <state width="1235" height="295" key="GridCell.Tab.0.right" timestamp="1607506549008">
-      <screen x="0" y="0" width="2560" height="1409" />
+    <state width="1877" height="292" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1607579590824" />
+    <state width="1236" height="292" key="GridCell.Tab.0.left/0.0.2560.1409@0.0.2560.1409" timestamp="1607576556114" />
+    <state width="1877" height="292" key="GridCell.Tab.0.right" timestamp="1607579590824">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1235" height="295" key="GridCell.Tab.0.right/0.0.2560.1409@0.0.2560.1409" timestamp="1607506549008" />
+    <state width="1877" height="292" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1607579590824" />
+    <state width="1236" height="292" key="GridCell.Tab.0.right/0.0.2560.1409@0.0.2560.1409" timestamp="1607576556114" />
     <state x="1287" y="340" key="SettingsEditor" timestamp="1607421294000">
       <screen x="0" y="0" width="2560" height="1409" />
     </state>
@@ -154,9 +150,9 @@
       <screen x="0" y="0" width="2560" height="1409" />
     </state>
     <state x="1657" y="469" key="extract.method.dialog/0.0.2560.1409@0.0.2560.1409" timestamp="1607498616846" />
-    <state x="1582" y="321" width="672" height="678" key="search.everywhere.popup" timestamp="1607380000635">
+    <state x="1583" y="321" width="672" height="678" key="search.everywhere.popup" timestamp="1607560482150">
       <screen x="0" y="0" width="2560" height="1409" />
     </state>
-    <state x="1582" y="321" width="672" height="678" key="search.everywhere.popup/0.0.2560.1409@0.0.2560.1409" timestamp="1607380000635" />
+    <state x="1583" y="321" width="672" height="678" key="search.everywhere.popup/0.0.2560.1409@0.0.2560.1409" timestamp="1607560482150" />
   </component>
 </project>

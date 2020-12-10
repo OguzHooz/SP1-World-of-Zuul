@@ -51,20 +51,18 @@ public abstract class SpriteBase {
 
     }
 
-    public void addToLayer() {
-        this.layer.getChildren().add(this.imageView);
+    private void addToLayer() {
+        layer.getChildren().add(imageView);
     }
 
-    public void removeFromLayer() {
+    private void removeFromLayer() {
         this.layer.getChildren().remove(this.imageView);
     }
 
     public static void move() {
-
-        x += dx;
+        x+=dx;
         y += dy;
         r += dr;
-
     }
 
     public boolean isAlive() {

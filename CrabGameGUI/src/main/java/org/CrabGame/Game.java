@@ -17,15 +17,15 @@ public class Game {
         Room center, northwesternSea, northernSea, northeasternSea, westernSea, easternSea, southwesternSea, southernSea, southeasternSea;
 
         //Tilføjer descriptions til rooms
-        center = new Room("In the middle of the sea");
-        northwesternSea = new Room("This is the upper left corner");
-        northernSea = new Room("you are now up");
-        northeasternSea = new Room("This is the upper right corner");
-        westernSea = new Room("you are now to the left");
-        easternSea = new Room("you are now to the right");
-        southwesternSea = new Room("This is the lower right corner");
-        southernSea = new Room("you are now down");
-        southeasternSea = new Room("This is the lower left corner");
+        center = new Room("In the middle of the sea", "center");
+        northwesternSea = new Room("This is the upper left corner", "northwesternSea");
+        northernSea = new Room("you are now up", "northernSea");
+        northeasternSea = new Room("This is the upper right corner", "northeasternSea");
+        westernSea = new Room("you are now to the left", "westernSea");
+        easternSea = new Room("you are now to the right", "easternSea");
+        southwesternSea = new Room("This is the lower right corner", "southwesternSea");
+        southernSea = new Room("you are now down", "southernSea");
+        southeasternSea = new Room("This is the lower left corner", "southeasternSea");
 
         //tilføjer exits til diverse rooms
         center.setExit("east", easternSea);
@@ -237,5 +237,9 @@ public class Game {
 
     public static Room getCurrentRoom() {
         return currentRoom;
+    }
+
+    public static void setCurrentRoom(Room currentRoom) {
+        Game.currentRoom = currentRoom;
     }
 }

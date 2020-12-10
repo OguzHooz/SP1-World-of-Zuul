@@ -44,17 +44,17 @@ public class centerController extends AnchorPane implements Initializable{
         Room currentRoom = Game.getCurrentRoom();
         //så skal vi gå i gennem hvert stykke mad og sætte billed på f1,f2 eller f3
         //i forhold til hvilket stykke mad der er spawnet
-        for (int i = 0; i < currentRoom.getFoodCoordinatex().size(); i++){
-            //sætter billed id
-            arrayImage.get(i).setId(currentRoom.getFoodType().get(i));
-            //the image is added to the jar, access it via getResource
-            arrayImage.get(i).setImage(new Image(getClass().getResource("/org/Images/"+ currentRoom.getFoodType().get(i).toUpperCase() +".png").toExternalForm()));
+        if (!currentRoom.isDiscovered | !currentRoom.equals("center")){
+            for (int i = 0; i < currentRoom.getFoodCoordinatex().size(); i++){
+                //sætter billed id
+                arrayImage.get(i).setId(currentRoom.getFoodType().get(i));
+                //the image is added to the jar, access it via getResource
+                arrayImage.get(i).setImage(new Image(getClass().getResource("/org/Images/"+ currentRoom.getFoodType().get(i).toUpperCase() +".png").toExternalForm()));
 
-            //Sætter hvilket sted de skal spawne, både X og Y position
-            arrayImage.get(i).setLayoutX(new Random().nextInt(795));
-            arrayImage.get(i).setLayoutY(new Random().nextInt(597));
+                //Sætter hvilket sted de skal spawne, både X og Y position
+                arrayImage.get(i).setLayoutX(new Random().nextInt(795));
+                arrayImage.get(i).setLayoutY(new Random().nextInt(597));
+            }
         }
-        //spiller bevægelse her i guess
-
     }
 }

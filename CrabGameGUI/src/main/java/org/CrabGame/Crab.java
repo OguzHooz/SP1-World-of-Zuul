@@ -22,12 +22,11 @@ public class Crab extends SpriteBase {
     }
 
     private void init() {
-        // calculate movement bounds of the player ship
-        // allow half of the ship to be outside of the screen
+        // calculate movement bounds of the player crab
         CrabMinX = 0;
-        CrabMaxX = Settings.GAME_WIDTH;
+        CrabMaxX = (Settings.GAME_WIDTH - image.getWidth());
         CrabMinY = 0;
-        CrabMaxY = Settings.GAME_HEIGHT;
+        CrabMaxY = (Settings.GAME_HEIGHT - image.getHeight());
     }
 
     public static void processInput(){
@@ -45,9 +44,9 @@ public class Crab extends SpriteBase {
         }
 
         // horizontal direction
-        if( input.isMoveLeft()) {
+        if( input.isMoveLeft() && x != CrabMinX) {
             dx = -speed;
-        } else if( input.isMoveRight()) {
+        } else if( input.isMoveRight() && x != CrabMaxX) {
             dx = speed;
         } else {
             dx = 0d;
@@ -62,16 +61,16 @@ public class Crab extends SpriteBase {
     private static void checkBounds() {
 
         // vertical
-        if( Double.compare( y, CrabMinY) < 0) {
+        if( Double.compare( y, CrabMinY) == 0) {
             y = CrabMinY;
-        } else if( Double.compare(y, CrabMaxY) > 0) {
+        } else if( Double.compare(y, CrabMaxY) == 0) {
             y = CrabMaxY;
         }
 
         // horizontal
-        if( Double.compare( x, CrabMinX) < 0) {
+        if( Double.compare( x, CrabMinX) == 0) {
             x = CrabMinX;
-        } else if( Double.compare(x, CrabMaxX) > 0) {
+        } else if( Double.compare(x, CrabMaxX) == 0) {
             x = CrabMaxX;
         }
 
@@ -82,6 +81,48 @@ public class Crab extends SpriteBase {
 
     public static double getY() {
         return y;
+    }
+
+    public static Image getImage(){
+        return image;
+    }
+
+    public static double getCrabMaxX() {
+        return CrabMaxX;
+    }
+
+    public static double getCrabMaxY() {
+        return CrabMaxY;
+    }
+
+    public static double getCrabMinX() {
+        return CrabMinX;
+    }
+
+    public static double getCrabMinY() {
+        return CrabMinY;
+    }
+
+    public static void setCrabMaxX(double crabMaxX) {
+        CrabMaxX = crabMaxX;
+    }
+
+    public static void setCrabMaxY(double crabMaxY) {
+        CrabMaxY = crabMaxY;
+    }
+
+    public static void setCrabMinX(double crabMinX) {
+        CrabMinX = crabMinX;
+    }
+
+    public static void setCrabMinY(double crabMinY) {
+        CrabMinY = crabMinY;
+    }
+    public static void setX(double X){
+        x = X;
+    }
+    public static void setY(double Y){
+        y = Y;
     }
 
     @Override

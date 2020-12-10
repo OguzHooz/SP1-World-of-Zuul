@@ -1,7 +1,6 @@
 package org.CrabGame;
 
 import javafx.animation.AnimationTimer;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,10 +8,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class gameLoop {
     private static AnimationTimer gameLoop;
@@ -60,8 +55,75 @@ public class gameLoop {
         debugLabel.setText("FPS: " + fpsCurrent);
     }
 
-
-
+    private static void moveScene(double x, double y){
+        //til højre
+        if (Double.compare(x, 0) == 0){
+            Room nextRoom = Game.getCurrentRoom().getExit("west");
+            if (nextRoom == null){
+                System.out.println("there is no way");
+            } else {
+                try {
+                    App.setRoot(Game.getCurrentRoom().getRoomName());
+                    App.player.setX(Settings.GAME_WIDTH+10);
+                    Game.setCurrentRoom(nextRoom);
+                    Game.getCurrentRoom().isDiscovered = true;
+                    App.getRootscene().getChildren().add(App.playfieldLayer);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        //til venstre
+        if (Double.compare(x, Settings.GAME_WIDTH) == 0){
+            Room nextRoom = Game.getCurrentRoom().getExit("east");
+            if (nextRoom == null){
+                System.out.println("there is no way");
+            } else {
+                try {
+                    App.setRoot(Game.getCurrentRoom().getRoomName());
+                    App.player.setX(10);
+                    Game.setCurrentRoom(nextRoom);
+                    Game.getCurrentRoom().isDiscovered = true;
+                    App.getRootscene().getChildren().add(App.playfieldLayer);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        //bunden
+        if (Double.compare(y, 0) == 0){
+            Room nextRoom = Game.getCurrentRoom().getExit("north");
+            if (nextRoom == null){
+                System.out.println("there is no way");
+            } else {
+                try {
+                    App.setRoot(Game.getCurrentRoom().getRoomName());
+                    App.player.setY(Settings.GAME_HEIGHT-10);
+                    Game.setCurrentRoom(nextRoom);
+                    Game.getCurrentRoom().isDiscovered = true;
+                    App.getRootscene().getChildren().add(App.playfieldLayer);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (Double.compare(y, Settings.GAME_HEIGHT) == 0){
+            Room nextRoom = Game.getCurrentRoom().getExit("south");
+            if (nextRoom == null){
+                System.out.println("there is no way");
+            } else {
+                try {
+                    App.setRoot(Game.getCurrentRoom().getRoomName());
+                    App.player.setY(10);
+                    Game.setCurrentRoom(nextRoom);
+                    Game.getCurrentRoom().isDiscovered = true;
+                    App.getRootscene().getChildren().add(App.playfieldLayer);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
     public static void createGameLoop(){
         gameLoop = new AnimationTimer() {
             @Override
@@ -75,23 +137,23 @@ public class gameLoop {
 
                 // move sprites internally
                 App.player.move();
-                for (Node n : App.getRootscene().getChildren()){
+                /*for (Node n : App.getRootscene().getChildren()){
                     if ("food".equals(n.getUserData())){
                         if (App.player.getY() < n.getLayoutY()){
                             n.setDisable(true);
                         }
                     }
-                }
+                }*/
 
                 // move sprites in the UI
                 App.player.updateUI();
 
                 // check if sprites can be removed
-                if (App.player.getY() > Settings.GAME_WIDTH)
+                moveScene(App.player.getX(),App.player.getY());
 
                 // update debug information
-                updateFps();
-                updateDebugOverlay();
+                //updateFps();
+                //updateDebugOverlay();
 
 
             }

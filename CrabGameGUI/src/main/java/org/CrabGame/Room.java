@@ -12,6 +12,7 @@ public class Room {
     final int[] xakse = {1,2,3,4,5};
     final int[] yakse = {1,2,3,4,5};
     public boolean isDiscovered = false;
+    private String roomName;
 
     //arraylister til mad
     ArrayList<Integer> foodCoordinatex;
@@ -20,9 +21,10 @@ public class Room {
     ArrayList<Integer> foodAmount;
 
     //Constructor
-    public Room(String description){
+    public Room(String description, String roomName){
         this.description = description;
         exits = new HashMap<String, Room>();
+        this.roomName = roomName;
 
         foodAmount = new ArrayList<>();
         foodType = new ArrayList<>();
@@ -154,4 +156,7 @@ public class Room {
         return foodCoordinatex;
     }
 
+    public String getRoomName() {
+        return roomName;
+    }
 }
