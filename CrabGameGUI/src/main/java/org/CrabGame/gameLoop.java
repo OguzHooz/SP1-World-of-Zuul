@@ -97,7 +97,7 @@ public class gameLoop {
         //yderligere mangler vi hp bar
         counterCO2 = new Text();
             counterCO2.relocate(8,84);
-            counterCO2.setFont(Font.font("/org/Images/Mario-Kart-DS.ttf"));
+            counterCO2.setStyle("-fx-font-family: Mario-Kart-DS");
             counterCO2.setText("CO2: " + valueOf(0));
             counterCO2.setFill(Color.ANTIQUEWHITE);
             hp.getChildren().add(counterCO2);

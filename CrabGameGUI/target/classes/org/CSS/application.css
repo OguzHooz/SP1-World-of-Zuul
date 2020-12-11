@@ -1,12 +1,4 @@
-
 .anchor{
     -fx-background-image: url('../Images/background.png') ;
     -fx-background-repeat: repeat;
-}
-.titleScreenAnchor{
-    -fx-background-image: url('../Images/background.png');
-    -fx-background-repeat: repeat;
-}
-.btn{
-
 }
