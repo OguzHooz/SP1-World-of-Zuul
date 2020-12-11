@@ -34,6 +34,7 @@ public class gameLoop {
     private static Text counterCO2;
     private static double CO2 = Game.getCurrentRoom().getInitialCO2();
     private static Pane hp;
+    private static Pane hearts;
 
     public static void startGame(){
         gameLoop.start();
@@ -63,6 +64,29 @@ public class gameLoop {
             frameCount = 0;
         }
     }
+    public static void heartBreaker(){
+        hearts = new Pane();
+        hp.getChildren().add(hearts);
+        int x = 16;
+        int y = 0;
+        for (int i = 0; i<life.size();i++){
+            ImageView container = new ImageView();
+            Image billed = new Image(App.class.getResource("/org/Images/HEART64.png").toExternalForm());
+            container.setImage(billed);
+            container.relocate(x,y);
+            hearts.getChildren().add(container);
+            x+=68;
+        }
+        for (int i = 0; i < 3-life.size(); i++) {
+            ImageView container = new ImageView();
+            Image billed = new Image(App.class.getResource("/org/Images/HEART64_GREY.png").toExternalForm());
+            container.setImage(billed);
+            container.relocate(x,y);
+            hearts.getChildren().add(container);
+            x+=68;
+        }
+        
+    }
     private static void updateDebugOverlay(){
         debugLabel.setText("FPS: " + fpsCurrent);
     }
@@ -73,16 +97,6 @@ public class gameLoop {
             life = new ArrayList<>();
             for (int i = 0; i < antalliv; i++){
                 life.add(i);
-            }
-            int x = 16;
-            int y = 0;
-            for (int i = 0; i<life.size();i++){
-                ImageView container = new ImageView();
-                Image billed = new Image(App.class.getResource("/org/Images/HEART64.png").toExternalForm());
-                container.setImage(billed);
-                container.relocate(x,y);
-                hp.getChildren().add(container);
-                x+=68;
             }
             counterHp = new Text();
             counterHp.relocate(8, 72);
@@ -260,6 +274,14 @@ public class gameLoop {
                 crabDMG(CO2/750);
                 counterHp.setText("HP: " + Math.round(Crab.getHealth())*1d);
                 hp.getChildren().add(counterHp);
+
+                if (Crab.getHealth() <= 0) {
+                    counterHp.setText("HP: " + 0);
+                    hearts.getChildren().clear();
+                    heartBreaker();
+
+                }
+
 
 
                 for (int i = 0; i< Room.getFoodList().size(); i++){

@@ -50,14 +50,15 @@ public class App extends Application {
         stage.show();
 
         loadResources();
-        createLevel(scene);
+
         //start med 3 liv
 
         gameLoop.createHPOverlay(player.getLife());
+        createLevel(scene);
         gameLoop.createDebugOverlay();
         gameLoop.createGameLoop();
-        System.out.println(Game.getCurrentRoom().getFoodCoordinatex().size());
         gameLoop.startGame();
+
     }
 
     public static void loadResources(){
@@ -68,6 +69,7 @@ public class App extends Application {
     public static void createLevel(Scene scene) {
         createfood();
         createPlayer(scene);
+        gameLoop.heartBreaker();
     }
     public static void createfood(){
 
