@@ -65,27 +65,27 @@ public class Room {
                         foodCoordinatey.add(i);
                         switch (e) {
                             case "FUNGI" -> {
-                                foodType.add("BACTERIA");
+                                foodType.add("FISH2");
                                 foodAmount.add(FoodTypes.FUNGI.getAmount());
                             }
                             case "BACTERIA" -> {
-                                foodType.add("SHRIMP");
+                                foodType.add("FISH2");
                                 foodAmount.add(FoodTypes.BACTERIA.getAmount());
                             }
                             case "BARNACLES" -> {
-                                foodType.add("BARNACLES");
+                                foodType.add("SEAWEED64");
                                 foodAmount.add(FoodTypes.BARNACLES.getAmount());
                             }
                             case "DETRITUS" -> {
-                                foodType.add("BACTERIA");
+                                foodType.add("SEAWEED64");
                                 foodAmount.add(FoodTypes.DETRITUS.getAmount());
                             }
                             case "WORMS" -> {
-                                foodType.add("SHRIMP");
+                                foodType.add("FISH1");
                                 foodAmount.add(FoodTypes.WORMS.getAmount());
                             }
                             case "PLANKTON" -> {
-                                foodType.add("BACTERIA");
+                                foodType.add("FISH1");
                                 foodAmount.add(FoodTypes.PLANKTON.getAmount());
                             }
                             case "KRILL" -> {
@@ -93,7 +93,7 @@ public class Room {
                                 foodAmount.add(FoodTypes.KRILL.getAmount());
                             }
                             case "TURTLE_HATCHLING" -> {
-                                foodType.add("TURTLE_HATCHLING");
+                                foodType.add("FISHEGG64");
                                 foodAmount.add(FoodTypes.TURTLE_HATCHLING.getAmount());
                             }
                             case "MOLLUSCS" -> {

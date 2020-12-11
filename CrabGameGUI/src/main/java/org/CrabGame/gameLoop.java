@@ -83,20 +83,20 @@ public class gameLoop {
             int y = 0;
             for (int i = 0; i<life.size();i++){
                 ImageView container = new ImageView();
-                Image billed = new Image(App.class.getResource("/org/Images/heart.png").toExternalForm());
+                Image billed = new Image(App.class.getResource("/org/Images/HEART64.png").toExternalForm());
                 container.setImage(billed);
                 container.relocate(x,y);
                 hp.getChildren().add(container);
                 x+=24;
             }
             counterHp = new Text();
-            counterHp.relocate(8, 32);
+            counterHp.relocate(8, 72);
             App.player.setHealth(20);
             counterHp.setText("HP: " + valueOf(App.player.getHealth()));
             hp.getChildren().add(counterHp);
         //yderligere mangler vi hp bar
         counterCO2 = new Text();
-            counterCO2.relocate(8,64);
+            counterCO2.relocate(8,84);
             counterCO2.setFont(Font.font("/org/Images/Mario-Kart-DS.ttf"));
             counterCO2.setText("CO2: " + valueOf(0));
             counterCO2.setFill(Color.ANTIQUEWHITE);
