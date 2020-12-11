@@ -86,15 +86,15 @@ public class gameLoop {
             }
             counterHp = new Text();
             counterHp.relocate(8, 72);
-            App.player.setHealth(20);
-            counterHp.setText("HP: " + valueOf(App.player.getHealth()));
+            Crab.setHealth(20);
+            counterHp.setText("HP: " + Crab.getHealth());
             counterHp.setFill(Color.ANTIQUEWHITE);
             hp.getChildren().add(counterHp);
         //yderligere mangler vi hp bar
         counterCO2 = new Text();
             counterCO2.relocate(8,84);
             counterCO2.setStyle("-fx-font-family: Mario-Kart-DS");
-            counterCO2.setText("CO2: " + valueOf(0));
+            counterCO2.setText("CO2: " + 0);
             counterCO2.setFill(Color.ANTIQUEWHITE);
             hp.getChildren().add(counterCO2);
     }
@@ -112,7 +112,7 @@ public class gameLoop {
             } else {
                 try {
                     App.setRoot(nextRoom.getRoomName());
-                    App.player.setX(Settings.GAME_WIDTH-32);
+                    Crab.setX(Settings.GAME_WIDTH-32);
                     Game.setCurrentRoom(nextRoom);
                     Game.getCurrentRoom().isDiscovered = true;
                     App.getRootscene().getChildren().add(App.playfieldLayer);
@@ -125,8 +125,9 @@ public class gameLoop {
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
                     App.getRootscene().getChildren().add(hp);
-                    App.createfood();
+                    App.createfood(Game.getCurrentRoom());
                     App.getRootscene().getChildren().add(App.getFoodLayer());
+                    System.out.println(Game.getCurrentRoom().getFoodList());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -140,7 +141,7 @@ public class gameLoop {
             } else {
                 try {
                     App.setRoot(nextRoom.getRoomName());
-                    App.player.setX(32);
+                    Crab.setX(32);
                     Game.setCurrentRoom(nextRoom);
                     Game.getCurrentRoom().isDiscovered = true;
                     App.getRootscene().getChildren().add(App.playfieldLayer);
@@ -153,7 +154,7 @@ public class gameLoop {
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
                     App.getRootscene().getChildren().add(hp);
-                    App.createfood();
+                    App.createfood(Game.getCurrentRoom());
                     App.getRootscene().getChildren().add(App.getFoodLayer());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -168,7 +169,7 @@ public class gameLoop {
             } else {
                 try {
                     App.setRoot(nextRoom.getRoomName());
-                    App.player.setY(Settings.GAME_HEIGHT-32);
+                    Crab.setY(Settings.GAME_HEIGHT-32);
                     Game.setCurrentRoom(nextRoom);
                     Game.getCurrentRoom().isDiscovered = true;
                     App.getRootscene().getChildren().add(App.playfieldLayer);
@@ -181,7 +182,7 @@ public class gameLoop {
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
                     App.getRootscene().getChildren().add(hp);
-                    App.createfood();
+                    App.createfood(Game.getCurrentRoom());
                     App.getRootscene().getChildren().add(App.getFoodLayer());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -195,7 +196,7 @@ public class gameLoop {
             } else {
                 try {
                     App.setRoot(nextRoom.getRoomName());
-                    App.player.setY(32);
+                    Crab.setY(32);
                     Game.setCurrentRoom(nextRoom);
                     Game.getCurrentRoom().isDiscovered = true;
                     App.getRootscene().getChildren().add(App.playfieldLayer);
@@ -208,7 +209,7 @@ public class gameLoop {
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
                     App.getRootscene().getChildren().add(hp);
-                    App.createfood();
+                    App.createfood(Game.getCurrentRoom());
                     App.getRootscene().getChildren().add(App.getFoodLayer());
 
                 } catch (IOException e) {
@@ -223,11 +224,11 @@ public class gameLoop {
             @Override
             public void handle(long l) {
                 // player AI (input)
-                App.player.processInput();
+                Crab.processInput();
 
 
                 // move sprites internally
-                App.player.move();
+                Crab.move();
 
                 CO2 = CO2+Game.getCurrentRoom().getHigherCO2();
                 counterCO2.setText("CO2: " + Math.round(CO2*1d) + "%");
@@ -246,27 +247,27 @@ public class gameLoop {
 
                 }
 
-                for (int i = 0; i<Game.getCurrentRoom().getFoodList().size(); i++){
-                    if (Game.getCurrentRoom().getFoodList().get(i).getLayoutX() < App.player.getX() && App.player.getX() < (Game.getCurrentRoom().getFoodList().get(i).getLayoutX()+Game.getCurrentRoom().getFoodList().get(i).getImage().getWidth())){
-                        if (Game.getCurrentRoom().getFoodList().get(i).getLayoutY() < App.player.getY() && App.player.getY() < (Game.getCurrentRoom().getFoodList().get(i).getLayoutY()+Game.getCurrentRoom().getFoodList().get(i).getImage().getHeight())) {
-                            if (App.player.getHealth() + 25 >= 100) {
+                for (int i = 0; i< Room.getFoodList().size(); i++){
+                    if (Room.getFoodList().get(i).getLayoutX() < Crab.getX() && Crab.getX() < (Room.getFoodList().get(i).getLayoutX()+ Room.getFoodList().get(i).getImage().getWidth())){
+                        if (Room.getFoodList().get(i).getLayoutY() < Crab.getY() && Crab.getY() < (Room.getFoodList().get(i).getLayoutY()+ Room.getFoodList().get(i).getImage().getHeight())) {
+                            if (Crab.getHealth() + 25 >= 100) {
                                 hp.getChildren().remove(counterHp);
-                                App.player.setHealth(100);
-                                counterHp.setText("HP: " + valueOf(App.player.getHealth()));
+                                Crab.setHealth(100);
+                                counterHp.setText("HP: " + Crab.getHealth());
                                 hp.getChildren().add(counterHp);
 
-                                Game.getCurrentRoom().getFoodList().remove(i);
+                                Room.getFoodList().remove(i);
                                 App.getFoodLayer().getChildren().clear();
-                                App.getFoodLayer().getChildren().addAll(Game.getCurrentRoom().getFoodList());
+                                App.getFoodLayer().getChildren().addAll(Room.getFoodList());
                             } else {
                                 hp.getChildren().remove(counterHp);
-                                App.player.setHealth(App.player.getHealth() + 25);
-                                counterHp.setText("HP: " + valueOf(App.player.getHealth()));
+                                Crab.setHealth(Crab.getHealth() + 25);
+                                counterHp.setText("HP: " + Crab.getHealth());
                                 hp.getChildren().add(counterHp);
 
-                                Game.getCurrentRoom().getFoodList().remove(i);
+                                Room.getFoodList().remove(i);
                                 App.getFoodLayer().getChildren().clear();
-                                App.getFoodLayer().getChildren().addAll(Game.getCurrentRoom().getFoodList());
+                                App.getFoodLayer().getChildren().addAll(Room.getFoodList());
                             }
                         }
                     }
@@ -274,10 +275,10 @@ public class gameLoop {
 
 
                 // move sprites in the UI
-                App.player.updateUI();
+                SpriteBase.updateUI();
 
                 // check if sprites can be moved scene
-                moveScene(App.player.getX(),App.player.getY());
+                moveScene(Crab.getX(), Crab.getY());
 
                 // update debug information
                 updateFps();
