@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="960.0" style="-fx-background-color: BLACK;" stylesheets="@../CSS/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.CrabGame.startScreenController">
+   <children>
+      <Pane layoutX="480.0" layoutY="360.0" prefHeight="318.0" prefWidth="395.0">
+         <children>
+            <Button styleClass="btn">
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

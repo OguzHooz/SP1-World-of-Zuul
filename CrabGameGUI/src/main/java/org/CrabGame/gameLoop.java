@@ -1,12 +1,16 @@
 package org.CrabGame;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.FadeTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -18,6 +22,7 @@ public class gameLoop {
     private static int frameCount = 0;
     private static int fpsCurrent = 0;
     private static long prevTime = -1;
+    //label for scene you are entering
 
     public static void startGame(){
         gameLoop.start();
@@ -57,6 +62,11 @@ public class gameLoop {
     }
 
     private static void moveScene(double x, double y){
+        //sætter sceneName til at display i toppen center
+            //sæt den til at strække ud of hele canvas
+        App.getSceneName().setLayoutX((Settings.GAME_WIDTH-App.getSceneName().getLayoutX())/2);
+            //top center
+        App.getSceneName().setAlignment(Pos.TOP_CENTER);
         //til venstre
         if (x == Crab.getCrabMinX()){
             Room nextRoom = Game.getCurrentRoom().getExit("west");
@@ -64,11 +74,19 @@ public class gameLoop {
                 System.out.println("there is no way");
             } else {
                 try {
-                    App.setRoot(Game.getCurrentRoom().getRoomName());
+                    App.setRoot(nextRoom.getRoomName());
                     App.player.setX(Settings.GAME_WIDTH-32);
                     Game.setCurrentRoom(nextRoom);
                     Game.getCurrentRoom().isDiscovered = true;
                     App.getRootscene().getChildren().add(App.playfieldLayer);
+                    //tilføjelse af transition på label
+                    App.getSceneName().setText(("You have now entered: " + Game.getCurrentRoom().getRoomName()).toUpperCase());
+                    App.getSceneName().setTextFill(Color.YELLOW);
+                    FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(1500), App.getSceneName());
+                    fadeTransition2.setFromValue(1.0);
+                    fadeTransition2.setToValue(0.0);
+                    fadeTransition2.play();
+                    App.getRootscene().getChildren().add(App.getSceneName());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -81,11 +99,19 @@ public class gameLoop {
                 System.out.println("there is no way");
             } else {
                 try {
-                    App.setRoot(Game.getCurrentRoom().getRoomName());
-                    App.player.setX(10);
+                    App.setRoot(nextRoom.getRoomName());
+                    App.player.setX(32);
                     Game.setCurrentRoom(nextRoom);
                     Game.getCurrentRoom().isDiscovered = true;
                     App.getRootscene().getChildren().add(App.playfieldLayer);
+                    //tilføjelse af transition på label
+                    App.getSceneName().setText(("You have now entered: " + Game.getCurrentRoom().getRoomName()).toUpperCase());
+                    App.getSceneName().setTextFill(Color.YELLOW);
+                    FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(1500), App.getSceneName());
+                    fadeTransition2.setFromValue(1.0);
+                    fadeTransition2.setToValue(0.0);
+                    fadeTransition2.play();
+                    App.getRootscene().getChildren().add(App.getSceneName());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -98,11 +124,19 @@ public class gameLoop {
                 System.out.println("there is no way");
             } else {
                 try {
-                    App.setRoot(Game.getCurrentRoom().getRoomName());
+                    App.setRoot(nextRoom.getRoomName());
                     App.player.setY(Settings.GAME_HEIGHT-32);
                     Game.setCurrentRoom(nextRoom);
                     Game.getCurrentRoom().isDiscovered = true;
                     App.getRootscene().getChildren().add(App.playfieldLayer);
+                    //tilføjelse af transition på label
+                    App.getSceneName().setText(("You have now entered: " + Game.getCurrentRoom().getRoomName()).toUpperCase());
+                    App.getSceneName().setTextFill(Color.YELLOW);
+                    FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(1500), App.getSceneName());
+                    fadeTransition2.setFromValue(1.0);
+                    fadeTransition2.setToValue(0.0);
+                    fadeTransition2.play();
+                    App.getRootscene().getChildren().add(App.getSceneName());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -114,11 +148,19 @@ public class gameLoop {
                 System.out.println("there is no way");
             } else {
                 try {
-                    App.setRoot(Game.getCurrentRoom().getRoomName());
+                    App.setRoot(nextRoom.getRoomName());
                     App.player.setY(32);
                     Game.setCurrentRoom(nextRoom);
                     Game.getCurrentRoom().isDiscovered = true;
                     App.getRootscene().getChildren().add(App.playfieldLayer);
+                    //tilføjelse af transition på label
+                    App.getSceneName().setText(("You have now entered: " + Game.getCurrentRoom().getRoomName()).toUpperCase());
+                    App.getSceneName().setTextFill(Color.YELLOW);
+                    FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(1500), App.getSceneName());
+                    fadeTransition2.setFromValue(1.0);
+                    fadeTransition2.setToValue(0.0);
+                    fadeTransition2.play();
+                    App.getRootscene().getChildren().add(App.getSceneName());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -138,23 +180,19 @@ public class gameLoop {
 
                 // move sprites internally
                 App.player.move();
-                for (Node n : App.getRootscene().getChildren()){
-                    System.out.println("Y: " + App.player.getY());
-                    System.out.println("X: " + App.player.getX());
-                    System.out.println("Billede Y:" +n.getLayoutBounds());
-                    System.out.println("Billede X:" +n.getLayoutX());
+                /*for (Node n : App.getRootscene().getChildren()){
                     if ("food".equals(n.getUserData())){
-                        /*if ((n.getLayoutY() )){
+                        if ((n.getLayoutY() )){
                            n.setVisible(false);
                             System.out.println("usynlig");
-                        }*/
+                        }
                     }
-                }
+                }*/
 
                 // move sprites in the UI
                 App.player.updateUI();
 
-                // check if sprites can be removed
+                // check if sprites can be moved scene
                moveScene(App.player.getX(),App.player.getY());
 
                 // update debug information

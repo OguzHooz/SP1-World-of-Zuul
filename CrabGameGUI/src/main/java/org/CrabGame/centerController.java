@@ -52,8 +52,8 @@ public class centerController extends AnchorPane implements Initializable{
                 arrayImage.get(i).setImage(new Image(getClass().getResource("/org/Images/"+ currentRoom.getFoodType().get(i).toUpperCase() +".png").toExternalForm()));
 
                 //Sætter hvilket sted de skal spawne, både X og Y position
-                arrayImage.get(i).setLayoutX(currentRoom.getFoodCoordinatex().get(i));
-                arrayImage.get(i).setLayoutY(currentRoom.getFoodCoordinatey().get(i));
+                arrayImage.get(i).setLayoutX(Math.floor(currentRoom.getFoodCoordinatex().get(i)*(960/6))+Math.random()*20);
+                arrayImage.get(i).setLayoutY(Math.floor(currentRoom.getFoodCoordinatey().get(i)*(960/6))+Math.random()*20);
                 arrayImage.get(i).setUserData("food");
 
 

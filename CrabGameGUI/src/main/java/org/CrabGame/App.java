@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -20,9 +21,11 @@ public class App extends Application {
     public static Pane playfieldLayer;
     public static Crab player;
     private static Image playerImage;
+    private static Label SceneName;
 
     @Override
     public void start(Stage stage) throws IOException {
+        SceneName = new Label();
         playfieldLayer = new Pane();
         //playfieldLayer.setPrefSize(Settings.GAME_HEIGHT, Settings.GAME_HEIGHT);
         playfieldLayer.setPrefSize(Settings.GAME_WIDTH, Settings.GAME_HEIGHT);
@@ -77,6 +80,10 @@ public class App extends Application {
 
     public static Pane getRootscene() {
         return rootscene;
+    }
+
+    public static Label getSceneName() {
+        return SceneName;
     }
 
     //loader spillet op (Kaldes i Main)
