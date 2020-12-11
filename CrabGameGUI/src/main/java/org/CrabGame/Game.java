@@ -1,5 +1,7 @@
 package org.CrabGame;
 
+import java.util.ArrayList;
+
 public class Game {
     //opretter vores parser (tekstbaseret spil)
     private Parser parser;

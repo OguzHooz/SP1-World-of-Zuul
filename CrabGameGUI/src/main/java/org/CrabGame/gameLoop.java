@@ -87,7 +87,7 @@ public class gameLoop {
             counterHp = new Text();
             counterHp.relocate(8, 72);
             Crab.setHealth(20);
-            counterHp.setText("HP: " + Crab.getHealth());
+            counterHp.setText("HP: " + Math.round(Crab.getHealth())*1d);
             counterHp.setFill(Color.ANTIQUEWHITE);
             hp.getChildren().add(counterHp);
         //yderligere mangler vi hp bar
@@ -114,7 +114,7 @@ public class gameLoop {
                     App.setRoot(nextRoom.getRoomName());
                     Crab.setX(Settings.GAME_WIDTH-32);
                     Game.setCurrentRoom(nextRoom);
-                    Game.getCurrentRoom().isDiscovered = true;
+
                     App.getRootscene().getChildren().add(App.playfieldLayer);
                     //tilføjelse af transition på label
                     App.getSceneName().setText(("You have now entered: " + Game.getCurrentRoom().getRoomName()).toUpperCase());
@@ -125,9 +125,10 @@ public class gameLoop {
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
                     App.getRootscene().getChildren().add(hp);
-                    App.createfood(Game.getCurrentRoom());
+                    App.getFoodLayer().getChildren().clear();
+                    App.createfood();
                     App.getRootscene().getChildren().add(App.getFoodLayer());
-                    System.out.println(Game.getCurrentRoom().getFoodList());
+                    Game.getCurrentRoom().isDiscovered = true;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -154,8 +155,10 @@ public class gameLoop {
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
                     App.getRootscene().getChildren().add(hp);
-                    App.createfood(Game.getCurrentRoom());
+                    App.getFoodLayer().getChildren().clear();
+                    App.createfood();
                     App.getRootscene().getChildren().add(App.getFoodLayer());
+                    Game.getCurrentRoom().isDiscovered = true;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -182,8 +185,10 @@ public class gameLoop {
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
                     App.getRootscene().getChildren().add(hp);
-                    App.createfood(Game.getCurrentRoom());
+                    App.getFoodLayer().getChildren().clear();
+                    App.createfood();
                     App.getRootscene().getChildren().add(App.getFoodLayer());
+                    Game.getCurrentRoom().isDiscovered = true;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -209,16 +214,21 @@ public class gameLoop {
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
                     App.getRootscene().getChildren().add(hp);
-                    App.createfood(Game.getCurrentRoom());
+                    App.getFoodLayer().getChildren().clear();
+                    App.createfood();
                     App.getRootscene().getChildren().add(App.getFoodLayer());
+                    Game.getCurrentRoom().isDiscovered = true;
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
-    }
 
+    }
+    private static void crabDMG(double a){
+        Crab.setHealth(Crab.getHealth()-a);
+    }
     public static void createGameLoop(){
         gameLoop = new AnimationTimer() {
             @Override
@@ -235,6 +245,7 @@ public class gameLoop {
                 if (33 < CO2 && CO2 < 66) {
                     Crab.setShellState(2);
                     App.loadResources();
+
                 }
                 if (66 < CO2 && CO2 < 100) {
                     Crab.setShellState(1);
@@ -244,8 +255,12 @@ public class gameLoop {
                     Crab.setShellState(0);
                     App.loadResources();
                     counterCO2.setText("CO2: 100%");
-
                 }
+                hp.getChildren().remove(counterHp);
+                crabDMG(CO2/750);
+                counterHp.setText("HP: " + Math.round(Crab.getHealth())*1d);
+                hp.getChildren().add(counterHp);
+
 
                 for (int i = 0; i< Room.getFoodList().size(); i++){
                     if (Room.getFoodList().get(i).getLayoutX() < Crab.getX() && Crab.getX() < (Room.getFoodList().get(i).getLayoutX()+ Room.getFoodList().get(i).getImage().getWidth())){
@@ -253,7 +268,7 @@ public class gameLoop {
                             if (Crab.getHealth() + 25 >= 100) {
                                 hp.getChildren().remove(counterHp);
                                 Crab.setHealth(100);
-                                counterHp.setText("HP: " + Crab.getHealth());
+                                counterHp.setText("HP: " + Math.round(Crab.getHealth())*1d);
                                 hp.getChildren().add(counterHp);
 
                                 Room.getFoodList().remove(i);
@@ -262,7 +277,7 @@ public class gameLoop {
                             } else {
                                 hp.getChildren().remove(counterHp);
                                 Crab.setHealth(Crab.getHealth() + 25);
-                                counterHp.setText("HP: " + Crab.getHealth());
+                                counterHp.setText("HP: " + Math.round(Crab.getHealth())*1d);
                                 hp.getChildren().add(counterHp);
 
                                 Room.getFoodList().remove(i);

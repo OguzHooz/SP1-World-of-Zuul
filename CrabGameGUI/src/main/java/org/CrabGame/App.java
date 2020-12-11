@@ -66,30 +66,31 @@ public class App extends Application {
     }
 
     public static void createLevel(Scene scene) {
-        createfood(Game.getCurrentRoom());
+        createfood();
         createPlayer(scene);
     }
-    public static void createfood(Room room){
+    public static void createfood(){
 
         ArrayList<ImageView> arrayImage = new ArrayList<>();
-        if (!room.isDiscovered){
-        //så skal vi gå i gennem hvert stykke mad og sætte billed på f1,f2 eller f3
+        //så skal vi gå i gennem hvert stykke mad og sætte billederne
         //i forhold til hvilket stykke mad der er spawnet
-            for (int i = 0; i < room.getFoodCoordinatex().size(); i++){
+            for (int i = 0; i < Game.getCurrentRoom().getFoodCoordinatex().size(); i++) {
                 ImageView imageView = new ImageView();
                 arrayImage.add(imageView);
                 //sætter billed id
-                arrayImage.get(i).setId(room.getFoodType().get(i));
+                arrayImage.get(i).setId(Game.getCurrentRoom().getFoodType().get(i));
                 //the image is added to the jar, access it via getResource
-                arrayImage.get(i).setImage(new Image(App.class.getResource("/org/Images/" + room.getFoodType().get(i) + ".png").toExternalForm()));
+                arrayImage.get(i).setImage(new Image(App.class.getResource("/org/Images/" + Game.getCurrentRoom().getFoodType().get(i) + ".png").toExternalForm()));
 
                 //Sætter hvilket sted de skal spawne, både X og Y position
-                arrayImage.get(i).setLayoutX(Math.random()*Settings.GAME_WIDTH);
-                arrayImage.get(i).setLayoutY(Math.random()*Settings.GAME_HEIGHT);
+                arrayImage.get(i).setLayoutX(Math.random() * Settings.GAME_WIDTH);
+                arrayImage.get(i).setLayoutY(Math.random() * Settings.GAME_HEIGHT);
+
                 foodLayer.getChildren().add(arrayImage.get(i));
-                room.foodList.add(arrayImage.get(i));
-                System.out.println(i);
-            }
+                Game.getCurrentRoom().foodList.add(arrayImage.get(i));
+
+
+
         }
     }
     private static void createPlayer(Scene scene) {
