@@ -225,26 +225,21 @@ public class gameLoop {
                 CO2 = CO2+Game.getCurrentRoom().getHigherCO2();
                 counterCO2.setText(valueOf(CO2));
 
-                for (int i = 0; i < Game.getCurrentRoom().getFoodCoordinatex().size(); i++){
-                    double foodcoordinateminx = Math.floor(Game.getCurrentRoom().getFoodCoordinatex().get(i)*(960/6))-16;
-                    double foodcoordinatemaxx = Math.floor(Game.getCurrentRoom().getFoodCoordinatex().get(i)*(960/6)+16);
-                    System.out.println("foodmin: " + foodcoordinateminx);
-                    if (foodcoordinateminx < App.player.getX() && App.player.getX() < foodcoordinatemaxx){
-                        if (App.player.getHealth() + 25 <= 100){
+                for (int i = 0; i<App.getFoodList().size(); i++){
+                    if (App.getFoodList().get(i).getLayoutX() < App.player.getX() && App.player.getX() < (App.getFoodList().get(i).getLayoutX()+App.getFoodList().get(i).getImage().getWidth())){
+                        if (App.getFoodList().get(i).getLayoutY() < App.player.getY() && App.player.getY() < (App.getFoodList().get(i).getLayoutY()+App.getFoodList().get(i).getImage().getHeight())) {
+                            if (App.player.getHealth() + 25 <= 100) {
+                                App.player.setHealth(100);
+                                System.out.println("hejsa2");
+                            } else {
+                                System.out.println("hejsa");
+                                App.player.setHealth(App.player.getHealth() + 25);
 
-                            App.player.setHealth(100);
-                            System.out.println("hejsa2");
-
-                        } else {
-                            System.out.println("hejsa");
-                            App.player.setHealth(App.player.getHealth()+25);
-                            Game.getCurrentRoom().getFoodCoordinatex().remove(i);
-                            Game.getCurrentRoom().getFoodCoordinatey().remove(i);
-
-
+                            }
                         }
                     }
                 }
+
 
                 // move sprites in the UI
                 App.player.updateUI();

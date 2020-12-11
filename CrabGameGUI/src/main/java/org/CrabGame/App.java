@@ -27,7 +27,7 @@ public class App extends Application {
     private static Image playerImage;
     private static Label SceneName;
     private static Pane foodLayer;
-    private static List foodList;
+    private static List<ImageView> foodList;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -38,8 +38,8 @@ public class App extends Application {
 
         //starter med hvilken scene vi gerne ville have (burde være start skærmen)
         scene = new Scene(loadFXML("center"),Settings.GAME_WIDTH, Settings.GAME_HEIGHT );
-        rootscene.getChildren().add(playfieldLayer);
         rootscene.getChildren().add(foodLayer);
+        rootscene.getChildren().add(playfieldLayer);
         //Titlen til vinduet der bliver åbnet
         stage.setTitle("The Crab Game");
         //load vores start skærm
@@ -68,7 +68,7 @@ public class App extends Application {
     }
     private static void createfood(Scene scene){
         ArrayList<ImageView> arrayImage = new ArrayList<>();
-        foodList = new ArrayList<ImageView>();
+        foodList = new ArrayList<>();
         Room currentRoom = Game.getCurrentRoom();
 
         //så skal vi gå i gennem hvert stykke mad og sætte billed på f1,f2 eller f3
@@ -80,7 +80,7 @@ public class App extends Application {
                 //sætter billed id
                 arrayImage.get(i).setId(currentRoom.getFoodType().get(i));
                 //the image is added to the jar, access it via getResource
-                arrayImage.get(i).setImage(new Image(App.class.getResource("/org/Images/"+ currentRoom.getFoodType().get(i).toUpperCase() +".png").toExternalForm()));
+                arrayImage.get(i).setImage(new Image(App.class.getResource("/org/Images/" + currentRoom.getFoodType().get(i) + ".png").toExternalForm()));
 
                 //Sætter hvilket sted de skal spawne, både X og Y position
                 arrayImage.get(i).setLayoutX(Math.floor(Game.getCurrentRoom().getFoodCoordinatex().get(i)*(960/6)));
@@ -118,6 +118,10 @@ public class App extends Application {
 
     public static Label getSceneName() {
         return SceneName;
+    }
+
+    public static List<ImageView> getFoodList() {
+        return foodList;
     }
 
     //loader spillet op (Kaldes i Main)
