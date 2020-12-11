@@ -3,6 +3,7 @@ package org.CrabGame;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -28,7 +29,8 @@ public class gameLoop {
     private static long prevTime = -1;
     //imageview and layer for life
     private static List life;
-    private static Text hpbar;
+    private static Text counterHp;
+    private static Text counterCO2;
     private static double CO2 = Game.getCurrentRoom().getInitialCO2();
     private static Pane hp;
 
@@ -86,11 +88,16 @@ public class gameLoop {
                 hp.getChildren().add(container);
                 x+=24;
             }
+            counterHp = new Text();
+            counterHp.relocate(8, 32);
+            App.player.setHealth(20);
+            counterHp.setText("HP: " + valueOf(App.player.getHealth()));
+            hp.getChildren().add(counterHp);
         //yderligere mangler vi hp bar
-        hpbar = new Text();
-            hpbar.relocate(8,32);
-            hpbar.setText(valueOf(0));
-            hp.getChildren().add(hpbar);
+        counterCO2 = new Text();
+            counterCO2.relocate(8,64);
+            counterCO2.setText("CO2: " + valueOf(0));
+            hp.getChildren().add(counterCO2);
     }
     private static void moveScene(double x, double y){
         //sætter sceneName til at display i toppen center
@@ -216,9 +223,28 @@ public class gameLoop {
 
 
                 CO2 = CO2+Game.getCurrentRoom().getHigherCO2();
-                hpbar.setText(valueOf(CO2));
+                counterCO2.setText(valueOf(CO2));
+
+                for (int i = 0; i < Game.getCurrentRoom().getFoodCoordinatex().size(); i++){
+                    double foodcoordinateminx = Math.floor(Game.getCurrentRoom().getFoodCoordinatex().get(i)*(960/6))-16;
+                    double foodcoordinatemaxx = Math.floor(Game.getCurrentRoom().getFoodCoordinatex().get(i)*(960/6)+16);
+                    System.out.println("foodmin: " + foodcoordinateminx);
+                    if (foodcoordinateminx < App.player.getX() && App.player.getX() < foodcoordinatemaxx){
+                        if (App.player.getHealth() + 25 <= 100){
+
+                            App.player.setHealth(100);
+                            System.out.println("hejsa2");
+
+                        } else {
+                            System.out.println("hejsa");
+                            App.player.setHealth(App.player.getHealth()+25);
+                            Game.getCurrentRoom().getFoodCoordinatex().remove(i);
+                            Game.getCurrentRoom().getFoodCoordinatey().remove(i);
 
 
+                        }
+                    }
+                }
 
                 // move sprites in the UI
                 App.player.updateUI();

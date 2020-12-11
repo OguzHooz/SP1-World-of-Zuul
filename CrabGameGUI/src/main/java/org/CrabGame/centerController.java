@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class centerController extends AnchorPane implements Initializable{
-    //Vi bruger disse til at spawne mad i, vi kan flytte deres position senere
+public class centerController{
+    /*//Vi bruger disse til at spawne mad i, vi kan flytte deres position senere
     //så længe objektet er i fxml filen
     //få fat på Imageview med id f1, f2 og f3
     @FXML
@@ -51,10 +51,10 @@ public class centerController extends AnchorPane implements Initializable{
                 arrayImage.get(i).setImage(new Image(getClass().getResource("/org/Images/"+ currentRoom.getFoodType().get(i).toUpperCase() +".png").toExternalForm()));
 
                 //Sætter hvilket sted de skal spawne, både X og Y position
-                arrayImage.get(i).setLayoutX(Math.floor(currentRoom.getFoodCoordinatex().get(i)*(960/6))+Math.random()*20);
-                arrayImage.get(i).setLayoutY(Math.floor(currentRoom.getFoodCoordinatey().get(i)*(960/6))+Math.random()*20);
+                arrayImage.get(i).setLayoutX(Math.floor(Game.getCurrentRoom().getFoodCoordinatex().get(i)*(960/6)));
+                arrayImage.get(i).setLayoutY(Math.floor(Game.getCurrentRoom().getFoodCoordinatex().get(i)*(960/6)));
                 arrayImage.get(i).setUserData("food");
             }
         }
-    }
+    }*/
 }

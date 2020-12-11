@@ -5,5 +5,5 @@ public class Settings {
     public static int GAME_HEIGHT = 720; //højde
 
     public static double PLAYER_SPEED = 5;
-    public static double PLAYER_HEALTH = 100.0;
+    public static int PLAYER_HEALTH = 75;
 }

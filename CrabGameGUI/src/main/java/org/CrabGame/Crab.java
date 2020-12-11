@@ -14,12 +14,14 @@ public class Crab extends SpriteBase {
     static double speed;
 
     static int life;
+    static int health;
 
-    public Crab(Pane layer, Image image, double x, double y, double r, double dx, double dy, double dr, double health, double damage, double speed, Input input, int life) {
+    public Crab(Pane layer, Image image, double x, double y, double r, double dx, double dy, double dr, int health, double damage, double speed, Input input, int life) {
         super(layer, image, x, y, r, dx, dy, dr, health, damage, life);
         this.speed = Settings.PLAYER_SPEED;
         this.input = input;
         this.life = life;
+        this.health = health;
 
         init();
     }
@@ -131,6 +133,14 @@ public class Crab extends SpriteBase {
     }
     public static void setY(double Y){
         y = Y;
+    }
+
+    public static void setHealth(int health) {
+        Crab.health = health;
+    }
+
+    public static int getHealth() {
+        return health;
     }
 
     @Override

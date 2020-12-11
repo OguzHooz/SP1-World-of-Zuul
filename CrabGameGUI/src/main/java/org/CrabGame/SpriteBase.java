@@ -65,8 +65,8 @@ public abstract class SpriteBase {
         x+=dx;
         y += dy;
         r += dr;
-
-
+        System.out.println("x koordinate: " + x);
+        System.out.println("y koordinate: " + y);
     }
 
     public boolean isAlive() {

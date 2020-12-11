@@ -12,6 +12,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -24,16 +26,20 @@ public class App extends Application {
     public static Crab player;
     private static Image playerImage;
     private static Label SceneName;
+    private static Pane foodLayer;
+    private static List foodList;
 
     @Override
     public void start(Stage stage) throws IOException {
         SceneName = new Label();
+        foodLayer = new Pane();
         playfieldLayer = new Pane();
         playfieldLayer.setPrefSize(Settings.GAME_WIDTH, Settings.GAME_HEIGHT);
 
         //starter med hvilken scene vi gerne ville have (burde være start skærmen)
         scene = new Scene(loadFXML("center"),Settings.GAME_WIDTH, Settings.GAME_HEIGHT );
         rootscene.getChildren().add(playfieldLayer);
+        rootscene.getChildren().add(foodLayer);
         //Titlen til vinduet der bliver åbnet
         stage.setTitle("The Crab Game");
         //load vores start skærm
@@ -45,6 +51,7 @@ public class App extends Application {
         loadResources();
         createLevel(scene);
         //start med 3 liv
+
         gameLoop.createHPOverlay(player.getLife());
         gameLoop.createDebugOverlay();
         gameLoop.createGameLoop();
@@ -56,9 +63,34 @@ public class App extends Application {
     }
 
     public static void createLevel(Scene scene) {
+        createfood(scene);
         createPlayer(scene);
     }
+    private static void createfood(Scene scene){
+        ArrayList<ImageView> arrayImage = new ArrayList<>();
+        foodList = new ArrayList<ImageView>();
+        Room currentRoom = Game.getCurrentRoom();
 
+        //så skal vi gå i gennem hvert stykke mad og sætte billed på f1,f2 eller f3
+        //i forhold til hvilket stykke mad der er spawnet
+        if (!currentRoom.isDiscovered | currentRoom.getRoomName().equals("center")){
+            for (int i = 0; i < currentRoom.getFoodCoordinatex().size(); i++){
+                ImageView imageView = new ImageView();
+                arrayImage.add(imageView);
+                //sætter billed id
+                arrayImage.get(i).setId(currentRoom.getFoodType().get(i));
+                //the image is added to the jar, access it via getResource
+                arrayImage.get(i).setImage(new Image(App.class.getResource("/org/Images/"+ currentRoom.getFoodType().get(i).toUpperCase() +".png").toExternalForm()));
+
+                //Sætter hvilket sted de skal spawne, både X og Y position
+                arrayImage.get(i).setLayoutX(Math.floor(Game.getCurrentRoom().getFoodCoordinatex().get(i)*(960/6)));
+                arrayImage.get(i).setLayoutY(Math.floor(Game.getCurrentRoom().getFoodCoordinatex().get(i)*(960/6)));
+                arrayImage.get(i).setUserData("food");
+                foodLayer.getChildren().add(arrayImage.get(i));
+                foodList.add(arrayImage.get(i));
+            }
+        }
+    }
     private static void createPlayer(Scene scene) {
         Input input = new Input(scene);
         input.addListeners();
