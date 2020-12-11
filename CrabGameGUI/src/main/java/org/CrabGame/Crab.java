@@ -15,7 +15,7 @@ public class Crab extends SpriteBase {
     static double speed;
 
     static int life;
-    static double health;
+    static double health = 100;
     static int shellState = 3;
 
     public Crab(Pane layer, Image image, double x, double y, double r, double dx, double dy, double dr, double health, double damage, double speed, Input input, int life) {
@@ -162,5 +162,9 @@ public class Crab extends SpriteBase {
 
     public static void setImage(Image image) {
         Crab.image = image;
+    }
+
+    public static void setLife(int life) {
+        Crab.life = Crab.life - life;
     }
 }

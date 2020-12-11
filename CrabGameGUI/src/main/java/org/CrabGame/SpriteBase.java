@@ -94,6 +94,8 @@ public abstract class SpriteBase {
         SpriteBase.removable = removable;
     }
 
+
+
     // -----------------------------------------
     // automatically generated getters & setters
     // -----------------------------------------

@@ -2,6 +2,7 @@ package org.CrabGame;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -64,29 +65,117 @@ public class gameLoop {
             frameCount = 0;
         }
     }
-    public static void heartBreaker(){
-        hearts = new Pane();
-        hp.getChildren().add(hearts);
+
+    public static void heartBreaker() {
         int x = 16;
         int y = 0;
-        for (int i = 0; i<life.size();i++){
-            ImageView container = new ImageView();
-            Image billed = new Image(App.class.getResource("/org/Images/HEART64.png").toExternalForm());
-            container.setImage(billed);
-            container.relocate(x,y);
-            hearts.getChildren().add(container);
-            x+=68;
+        switch (App.player.getLife()) {
+
+            case 3:
+                hearts = new Pane();
+                hp.getChildren().add(hearts);
+                ImageView container = new ImageView();
+                Image billed = new Image(App.class.getResource("/org/Images/HEART64.png").toExternalForm());
+                container.setImage(billed);
+                container.relocate(x, y);
+                hearts.getChildren().add(container);
+                x += 68;
+                ImageView container1 = new ImageView();
+                Image billed1 = new Image(App.class.getResource("/org/Images/HEART64.png").toExternalForm());
+                container1.setImage(billed1);
+                container1.relocate(x, y);
+                hearts.getChildren().add(container1);
+                x += 68;
+                ImageView container2 = new ImageView();
+                Image billed2 = new Image(App.class.getResource("/org/Images/HEART64.png").toExternalForm());
+                container2.setImage(billed2);
+                container2.relocate(x, y);
+                hearts.getChildren().add(container2);
+                break;
+            case 2:
+                hearts = new Pane();
+                hp.getChildren().add(hearts);
+                ImageView container21 = new ImageView();
+                Image billed21 = new Image(App.class.getResource("/org/Images/HEART64.png").toExternalForm());
+                container21.setImage(billed21);
+                container21.relocate(x, y);
+                hearts.getChildren().add(container21);
+                x += 68;
+                ImageView container22 = new ImageView();
+                Image billed22 = new Image(App.class.getResource("/org/Images/HEART64.png").toExternalForm());
+                container22.setImage(billed22);
+                container22.relocate(x, y);
+                hearts.getChildren().add(container22);
+                x +=68;
+                hearts = new Pane();
+                hp.getChildren().add(hearts);
+                ImageView container20 = new ImageView();
+                Image billed20 = new Image(App.class.getResource("/org/Images/HEART64_GREY.png").toExternalForm());
+                container20.setImage(billed20);
+                container20.relocate(x, y);
+                hearts.getChildren().add(container20);
+                break;
+            case 1:
+                hearts = new Pane();
+                hp.getChildren().add(hearts);
+                ImageView container31 = new ImageView();
+                Image billed31 = new Image(App.class.getResource("/org/Images/HEART64.png").toExternalForm());
+                container31.setImage(billed31);
+                container31.relocate(x, y);
+                hearts.getChildren().add(container31);
+                x += 68;
+                hearts = new Pane();
+                hp.getChildren().add(hearts);
+                ImageView container32 = new ImageView();
+                Image billed32 = new Image(App.class.getResource("/org/Images/HEART64_GREY.png").toExternalForm());
+                container32.setImage(billed32);
+                container32.relocate(x, y);
+                hearts.getChildren().add(container32);
+                x += 68;
+                hearts = new Pane();
+                hp.getChildren().add(hearts);
+                ImageView container30 = new ImageView();
+                Image billed30 = new Image(App.class.getResource("/org/Images/HEART64_GREY.png").toExternalForm());
+                container30.setImage(billed30);
+                container30.relocate(x, y);
+                hearts.getChildren().add(container30);
+                x += 68;
+                break;
+            case 0:
+                hearts = new Pane();
+                hp.getChildren().add(hearts);
+                ImageView container00 = new ImageView();
+                Image billed00 = new Image(App.class.getResource("/org/Images/HEART64_GREY.png").toExternalForm());
+                container00.setImage(billed00);
+                container00.relocate(x, y);
+                hearts.getChildren().add(container00);
+                x += 68;
+                hearts = new Pane();
+                hp.getChildren().add(hearts);
+                ImageView container01 = new ImageView();
+                Image billed01 = new Image(App.class.getResource("/org/Images/HEART64_GREY.png").toExternalForm());
+                container01.setImage(billed01);
+                container01.relocate(x, y);
+                hearts.getChildren().add(container01);
+                x += 68;
+                hearts = new Pane();
+                hp.getChildren().add(hearts);
+                ImageView container02 = new ImageView();
+                Image billed02 = new Image(App.class.getResource("/org/Images/HEART64_GREY.png").toExternalForm());
+                container02.setImage(billed02);
+                container02.relocate(x, y);
+                hearts.getChildren().add(container02);
+
+
         }
-        for (int i = 0; i < 3-life.size(); i++) {
-            ImageView container = new ImageView();
-            Image billed = new Image(App.class.getResource("/org/Images/HEART64_GREY.png").toExternalForm());
-            container.setImage(billed);
-            container.relocate(x,y);
-            hearts.getChildren().add(container);
-            x+=68;
-        }
-        
+
+
     }
+
+
+
+
+
     private static void updateDebugOverlay(){
         debugLabel.setText("FPS: " + fpsCurrent);
     }
@@ -269,6 +358,7 @@ public class gameLoop {
                     Crab.setShellState(0);
                     App.loadResources();
                     counterCO2.setText("CO2: 100%");
+                    CO2 = 100;
                 }
                 hp.getChildren().remove(counterHp);
                 crabDMG(CO2/750);
@@ -276,11 +366,19 @@ public class gameLoop {
                 hp.getChildren().add(counterHp);
 
                 if (Crab.getHealth() <= 0) {
+                    if (App.player.getLife() == 0) {
+                        Platform.exit();
+                    }
                     counterHp.setText("HP: " + 0);
                     hearts.getChildren().clear();
+                    App.player.setLife(1);
                     heartBreaker();
+                    Crab.setHealth(100);
+                    counterHp.setText("HP: " + 100);
+
 
                 }
+
 
 
 
