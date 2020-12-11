@@ -37,17 +37,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -63,6 +52,7 @@
       <option name="presentableId" value="Default" />
       <updated>1607693701276</updated>
       <workItem from="1607693705759" duration="991000" />
+      <workItem from="1607694908904" duration="550000" />
     </task>
     <servers />
   </component>
@@ -70,21 +60,21 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="2517" height="404" key="GridCell.Tab.0.bottom" timestamp="1607694729436">
+    <state width="2517" height="404" key="GridCell.Tab.0.bottom" timestamp="1607695463055">
       <screen x="0" y="0" width="2560" height="1409" />
     </state>
-    <state width="2517" height="404" key="GridCell.Tab.0.bottom/0.0.2560.1409@0.0.2560.1409" timestamp="1607694729436" />
-    <state width="2517" height="404" key="GridCell.Tab.0.center" timestamp="1607694729436">
+    <state width="2517" height="404" key="GridCell.Tab.0.bottom/0.0.2560.1409@0.0.2560.1409" timestamp="1607695463055" />
+    <state width="2517" height="404" key="GridCell.Tab.0.center" timestamp="1607695463055">
       <screen x="0" y="0" width="2560" height="1409" />
     </state>
-    <state width="2517" height="404" key="GridCell.Tab.0.center/0.0.2560.1409@0.0.2560.1409" timestamp="1607694729436" />
-    <state width="2517" height="404" key="GridCell.Tab.0.left" timestamp="1607694729436">
+    <state width="2517" height="404" key="GridCell.Tab.0.center/0.0.2560.1409@0.0.2560.1409" timestamp="1607695463055" />
+    <state width="2517" height="404" key="GridCell.Tab.0.left" timestamp="1607695463054">
       <screen x="0" y="0" width="2560" height="1409" />
     </state>
-    <state width="2517" height="404" key="GridCell.Tab.0.left/0.0.2560.1409@0.0.2560.1409" timestamp="1607694729436" />
-    <state width="2517" height="404" key="GridCell.Tab.0.right" timestamp="1607694729436">
+    <state width="2517" height="404" key="GridCell.Tab.0.left/0.0.2560.1409@0.0.2560.1409" timestamp="1607695463054" />
+    <state width="2517" height="404" key="GridCell.Tab.0.right" timestamp="1607695463055">
       <screen x="0" y="0" width="2560" height="1409" />
     </state>
-    <state width="2517" height="404" key="GridCell.Tab.0.right/0.0.2560.1409@0.0.2560.1409" timestamp="1607694729436" />
+    <state width="2517" height="404" key="GridCell.Tab.0.right/0.0.2560.1409@0.0.2560.1409" timestamp="1607695463055" />
   </component>
 </project>
