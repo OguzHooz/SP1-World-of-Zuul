@@ -19,6 +19,7 @@ public abstract class SpriteBase {
     static double dr;
 
     static double health;
+    static double life;
     static double damage;
 
     static boolean removable = false;
@@ -26,7 +27,7 @@ public abstract class SpriteBase {
     static double w;
     static double h;
 
-    public SpriteBase(Pane layer, Image image, double x, double y, double r, double dx, double dy, double dr, double health, double damage) {
+    public SpriteBase(Pane layer, Image image, double x, double y, double r, double dx, double dy, double dr, double health, double damage, int life) {
 
         this.layer = layer;
         this.image = image;
@@ -38,6 +39,7 @@ public abstract class SpriteBase {
         this.dr = dr;
 
         this.health = health;
+        this.life = life;
         this.damage = damage;
 
         this.imageView = new ImageView(image);
@@ -87,6 +89,10 @@ public abstract class SpriteBase {
     }
 
     public abstract void checkRemovability();
+
+    public static void setRemovable(boolean removable) {
+        SpriteBase.removable = removable;
+    }
 
     // -----------------------------------------
     // automatically generated getters & setters

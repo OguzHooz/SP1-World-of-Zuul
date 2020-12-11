@@ -17,15 +17,15 @@ public class Game {
         Room center, northwesternSea, northernSea, northeasternSea, westernSea, easternSea, southwesternSea, southernSea, southeasternSea;
 
         //Tilføjer descriptions til rooms
-        center = new Room("In the middle of the sea", "center");
-        northwesternSea = new Room("This is the upper left corner", "northwesternSea");
-        northernSea = new Room("you are now up", "northernSea");
-        northeasternSea = new Room("This is the upper right corner", "northeasternSea");
-        westernSea = new Room("you are now to the left", "westernSea");
-        easternSea = new Room("you are now to the right", "easternSea");
-        southwesternSea = new Room("This is the lower right corner", "southwesternSea");
-        southernSea = new Room("you are now down", "southernSea");
-        southeasternSea = new Room("This is the lower left corner", "southeasternSea");
+        center = new Room("In the middle of the sea", "center", 0.6, 0.02);
+        northwesternSea = new Room("This is the upper left corner", "northwesternSea", 2, 0.08);
+        northernSea = new Room("you are now up", "northernSea",1.2,0.04);
+        northeasternSea = new Room("This is the upper right corner", "northeasternSea", 2, 0.08);
+        westernSea = new Room("you are now to the left", "westernSea",1.2,0.04);
+        easternSea = new Room("you are now to the right", "easternSea",1.2,0.04);
+        southwesternSea = new Room("This is the lower right corner", "southwesternSea", 2, 0.08);
+        southernSea = new Room("you are now down", "southernSea",1.2,0.04);
+        southeasternSea = new Room("This is the lower left corner", "southeasternSea", 2, 0.08);
 
         //tilføjer exits til diverse rooms
         center.setExit("east", easternSea);

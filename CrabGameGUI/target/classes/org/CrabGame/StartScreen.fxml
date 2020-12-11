@@ -7,7 +7,7 @@
    <children>
       <Pane layoutX="480.0" layoutY="360.0" prefHeight="318.0" prefWidth="395.0">
          <children>
-            <Button styleClass="btn btn-1 btn-1c">
+            <Button styleClass="btn">
             </Button>
          </children>
       </Pane>

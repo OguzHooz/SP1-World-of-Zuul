@@ -3,16 +3,20 @@ package org.CrabGame;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.lang.String.valueOf;
 
 public class gameLoop {
     private static AnimationTimer gameLoop;
@@ -22,7 +26,11 @@ public class gameLoop {
     private static int frameCount = 0;
     private static int fpsCurrent = 0;
     private static long prevTime = -1;
-    //label for scene you are entering
+    //imageview and layer for life
+    private static List life;
+    private static Text hpbar;
+    private static double CO2 = Game.getCurrentRoom().getInitialCO2();
+    private static Pane hp;
 
     public static void startGame(){
         gameLoop.start();
@@ -60,13 +68,36 @@ public class gameLoop {
     private static void updateDebugOverlay(){
         debugLabel.setText("FPS: " + fpsCurrent);
     }
-
+    public static void createHPOverlay(int antalliv){
+        hp = new Pane();
+        App.getRootscene().getChildren().add(hp);
+        //life container
+            life = new ArrayList<>();
+            for (int i = 0; i < antalliv; i++){
+                life.add(i);
+            }
+            int x = 16;
+            int y = 0;
+            for (int i = 0; i<life.size();i++){
+                ImageView container = new ImageView();
+                Image billed = new Image(App.class.getResource("/org/Images/heart.png").toExternalForm());
+                container.setImage(billed);
+                container.relocate(x,y);
+                hp.getChildren().add(container);
+                x+=24;
+            }
+        //yderligere mangler vi hp bar
+        hpbar = new Text();
+            hpbar.relocate(8,32);
+            hpbar.setText(valueOf(0));
+            hp.getChildren().add(hpbar);
+    }
     private static void moveScene(double x, double y){
         //sætter sceneName til at display i toppen center
             //sæt den til at strække ud of hele canvas
-        App.getSceneName().setLayoutX((Settings.GAME_WIDTH-App.getSceneName().getLayoutX())/2);
+            App.getSceneName().setLayoutX((Settings.GAME_WIDTH-App.getSceneName().getLayoutX())/2);
             //top center
-        App.getSceneName().setAlignment(Pos.TOP_CENTER);
+            App.getSceneName().setAlignment(Pos.TOP_CENTER);
         //til venstre
         if (x == Crab.getCrabMinX()){
             Room nextRoom = Game.getCurrentRoom().getExit("west");
@@ -87,6 +118,7 @@ public class gameLoop {
                     fadeTransition2.setToValue(0.0);
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
+                    App.getRootscene().getChildren().add(hp);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -112,6 +144,7 @@ public class gameLoop {
                     fadeTransition2.setToValue(0.0);
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
+                    App.getRootscene().getChildren().add(hp);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -137,6 +170,7 @@ public class gameLoop {
                     fadeTransition2.setToValue(0.0);
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
+                    App.getRootscene().getChildren().add(hp);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -161,39 +195,36 @@ public class gameLoop {
                     fadeTransition2.setToValue(0.0);
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
+                    App.getRootscene().getChildren().add(hp);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
     }
+
     public static void createGameLoop(){
         gameLoop = new AnimationTimer() {
             @Override
             public void handle(long l) {
                 // player AI (input)
                 App.player.processInput();
-                // sprite AI
 
-
-                // add sprites
 
                 // move sprites internally
                 App.player.move();
-                /*for (Node n : App.getRootscene().getChildren()){
-                    if ("food".equals(n.getUserData())){
-                        if ((n.getLayoutY() )){
-                           n.setVisible(false);
-                            System.out.println("usynlig");
-                        }
-                    }
-                }*/
+
+
+                CO2 = CO2+Game.getCurrentRoom().getHigherCO2();
+                hpbar.setText(valueOf(CO2));
+
+
 
                 // move sprites in the UI
                 App.player.updateUI();
 
                 // check if sprites can be moved scene
-               moveScene(App.player.getX(),App.player.getY());
+                moveScene(App.player.getX(),App.player.getY());
 
                 // update debug information
                 updateFps();

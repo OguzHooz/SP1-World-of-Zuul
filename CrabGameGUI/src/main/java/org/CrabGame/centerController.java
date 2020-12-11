@@ -29,7 +29,6 @@ public class centerController extends AnchorPane implements Initializable{
 
     private ArrayList<ImageView> arrayImage;
 
-
     //opretter array der indeholder mad billeder
 
     @Override
@@ -44,7 +43,7 @@ public class centerController extends AnchorPane implements Initializable{
         Room currentRoom = Game.getCurrentRoom();
         //så skal vi gå i gennem hvert stykke mad og sætte billed på f1,f2 eller f3
         //i forhold til hvilket stykke mad der er spawnet
-        if (!currentRoom.isDiscovered | !currentRoom.equals("center")){
+        if (!currentRoom.isDiscovered | currentRoom.getRoomName().equals("center")){
             for (int i = 0; i < currentRoom.getFoodCoordinatex().size(); i++){
                 //sætter billed id
                 arrayImage.get(i).setId(currentRoom.getFoodType().get(i));
@@ -55,8 +54,6 @@ public class centerController extends AnchorPane implements Initializable{
                 arrayImage.get(i).setLayoutX(Math.floor(currentRoom.getFoodCoordinatex().get(i)*(960/6))+Math.random()*20);
                 arrayImage.get(i).setLayoutY(Math.floor(currentRoom.getFoodCoordinatey().get(i)*(960/6))+Math.random()*20);
                 arrayImage.get(i).setUserData("food");
-
-
             }
         }
     }

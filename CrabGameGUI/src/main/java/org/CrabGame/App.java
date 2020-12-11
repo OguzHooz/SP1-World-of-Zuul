@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -27,10 +29,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         SceneName = new Label();
         playfieldLayer = new Pane();
-        //playfieldLayer.setPrefSize(Settings.GAME_HEIGHT, Settings.GAME_HEIGHT);
         playfieldLayer.setPrefSize(Settings.GAME_WIDTH, Settings.GAME_HEIGHT);
-        //playfieldLayer.setStyle("-fx-background-color: blue");
-
 
         //starter med hvilken scene vi gerne ville have (burde være start skærmen)
         scene = new Scene(loadFXML("center"),Settings.GAME_WIDTH, Settings.GAME_HEIGHT );
@@ -45,6 +44,8 @@ public class App extends Application {
 
         loadResources();
         createLevel(scene);
+        //start med 3 liv
+        gameLoop.createHPOverlay(player.getLife());
         gameLoop.createDebugOverlay();
         gameLoop.createGameLoop();
         gameLoop.startGame();
@@ -65,8 +66,9 @@ public class App extends Application {
         double x = Settings.GAME_WIDTH/2.0;
         double y = Settings.GAME_HEIGHT/2.0;
 
-        player = new Crab(playfieldLayer,playerImage,x,y,0,0,0,0,Settings.PLAYER_HEALTH,0,Settings.PLAYER_SPEED, input);
+        player = new Crab(playfieldLayer,playerImage,x,y,0,0,0,0,Settings.PLAYER_HEALTH,0,Settings.PLAYER_SPEED, input, 3);
     }
+
 
     //sætter root for scenen, så den ved hvilken fil der skal vises
     static void setRoot(String fxml) throws IOException {
