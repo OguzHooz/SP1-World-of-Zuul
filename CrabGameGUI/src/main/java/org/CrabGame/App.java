@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -83,8 +84,8 @@ public class App extends Application {
                 arrayImage.get(i).setImage(new Image(App.class.getResource("/org/Images/" + currentRoom.getFoodType().get(i) + ".png").toExternalForm()));
 
                 //Sætter hvilket sted de skal spawne, både X og Y position
-                arrayImage.get(i).setLayoutX(Math.floor(Game.getCurrentRoom().getFoodCoordinatex().get(i)*(960/6)));
-                arrayImage.get(i).setLayoutY(Math.floor(Game.getCurrentRoom().getFoodCoordinatex().get(i)*(960/6)));
+                arrayImage.get(i).setLayoutX(Math.random()*Settings.GAME_WIDTH);
+                arrayImage.get(i).setLayoutY(Math.random()*Settings.GAME_HEIGHT);
                 arrayImage.get(i).setUserData("food");
                 foodLayer.getChildren().add(arrayImage.get(i));
                 foodList.add(arrayImage.get(i));

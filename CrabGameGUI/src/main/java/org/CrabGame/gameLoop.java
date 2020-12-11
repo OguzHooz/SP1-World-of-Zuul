@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -96,7 +97,9 @@ public class gameLoop {
         //yderligere mangler vi hp bar
         counterCO2 = new Text();
             counterCO2.relocate(8,64);
+            counterCO2.setFont(Font.font("/org/Images/Mario-Kart-DS.ttf"));
             counterCO2.setText("CO2: " + valueOf(0));
+            counterCO2.setFill(Color.ANTIQUEWHITE);
             hp.getChildren().add(counterCO2);
     }
     private static void moveScene(double x, double y){
