@@ -9,12 +9,14 @@ public class Crab extends SpriteBase {
     static double CrabMinY;
     static double CrabMaxY;
 
+    static Image image;
     static Input input;
 
     static double speed;
 
     static int life;
     static int health;
+    static int shellState = 3;
 
     public Crab(Pane layer, Image image, double x, double y, double r, double dx, double dy, double dr, int health, double damage, double speed, Input input, int life) {
         super(layer, image, x, y, r, dx, dy, dr, health, damage, life);
@@ -22,6 +24,8 @@ public class Crab extends SpriteBase {
         this.input = input;
         this.life = life;
         this.health = health;
+        this.image = image;
+
 
         init();
     }
@@ -143,8 +147,21 @@ public class Crab extends SpriteBase {
         return health;
     }
 
+    public static int getShellState() {
+        return shellState;
+    }
+
+    public static void setShellState(int a) {
+        shellState = a;
+    }
+
+
     @Override
     public void checkRemovability() {
 
+    }
+
+    public static void setImage(Image image) {
+        Crab.image = image;
     }
 }

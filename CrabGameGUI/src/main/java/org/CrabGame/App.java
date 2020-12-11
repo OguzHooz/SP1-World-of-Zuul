@@ -60,7 +60,8 @@ public class App extends Application {
     }
 
     public static void loadResources(){
-        playerImage = new Image(App.class.getResource("/org/Images/CRABREAL.png").toExternalForm(), 64,64,false,false);
+        playerImage = new Image(App.class.getResource("/org/Images/CRABHAPPY.png").toExternalForm(), 64,64,false,false);
+
     }
 
     public static void createLevel(Scene scene) {

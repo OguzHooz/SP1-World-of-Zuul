@@ -89,7 +89,7 @@ public class Room {
                                 foodAmount.add(FoodTypes.PLANKTON.getAmount());
                             }
                             case "KRILL" -> {
-                                foodType.add("SHRIMP");
+                                foodType.add("FISHEGG64");
                                 foodAmount.add(FoodTypes.KRILL.getAmount());
                             }
                             case "TURTLE_HATCHLING" -> {
@@ -97,15 +97,15 @@ public class Room {
                                 foodAmount.add(FoodTypes.TURTLE_HATCHLING.getAmount());
                             }
                             case "MOLLUSCS" -> {
-                                foodType.add("SHRIMP");
+                                foodType.add("SHRIMP64");
                                 foodAmount.add(FoodTypes.MOLLUSCS.getAmount());
                             }
                             case "SHRIMP" -> {
-                                foodType.add("SHRIMP");
+                                foodType.add("SHRIMP64");
                                 foodAmount.add(FoodTypes.SHRIMP.getAmount());
                             }
                             case "CRAYFISH" -> {
-                                foodType.add("SHRIMP");
+                                foodType.add("SHRIMP64");
                                 foodAmount.add(FoodTypes.CRAYFISH.getAmount());
                             }
                         }

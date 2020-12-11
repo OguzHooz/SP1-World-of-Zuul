@@ -48,11 +48,6 @@ public class gameLoop {
         //tilføj label under debuglayer
         debugLayer.getChildren().add(debugLabel);
 
-        ImageView debugImageview = new ImageView();
-        Image debugImage = new Image("file:src/main/java/org.CrabGame/BACTERIA.png", 128, 128, false, false);
-        debugImageview.setImage(debugImage);
-        debugLayer.getChildren().add(debugImageview);
-
         //lidt styling til debuglayer
         debugLayer.setStyle("-fx-background-color: rgba(0,0,0,0.3)");
         debugLayer.prefWidthProperty().bind(App.getRootscene().widthProperty());
@@ -224,9 +219,22 @@ public class gameLoop {
                 // move sprites internally
                 App.player.move();
 
-
                 CO2 = CO2+Game.getCurrentRoom().getHigherCO2();
-                counterCO2.setText(valueOf(CO2));
+                counterCO2.setText("CO2: " + Math.round(CO2*1d) + "%");
+                if (33 < CO2 && CO2 < 66) {
+                    Crab.setShellState(2);
+                    App.loadResources();
+                }
+                if (66 < CO2 && CO2 < 100) {
+                    Crab.setShellState(1);
+                    App.loadResources();
+                }
+                if (CO2 >= 100) {
+                    Crab.setShellState(0);
+                    App.loadResources();
+                    counterCO2.setText("CO2: 100%");
+
+                }
 
                 for (int i = 0; i<App.getFoodList().size(); i++){
                     if (App.getFoodList().get(i).getLayoutX() < App.player.getX() && App.player.getX() < (App.getFoodList().get(i).getLayoutX()+App.getFoodList().get(i).getImage().getWidth())){
