@@ -39,6 +39,7 @@ public class App extends Application {
 
         //starter med hvilken scene vi gerne ville have (burde være start skærmen)
         scene = new Scene(loadFXML("center"),Settings.GAME_WIDTH, Settings.GAME_HEIGHT );
+        scene.getStylesheets().add(getClass().getResource("/org/CSS/application.css").toExternalForm());
         rootscene.getChildren().add(foodLayer);
         rootscene.getChildren().add(playfieldLayer);
         //Titlen til vinduet der bliver åbnet

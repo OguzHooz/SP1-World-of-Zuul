@@ -82,17 +82,18 @@ public class gameLoop {
                 container.setImage(billed);
                 container.relocate(x,y);
                 hp.getChildren().add(container);
-                x+=24;
+                x+=68;
             }
             counterHp = new Text();
             counterHp.relocate(8, 72);
             App.player.setHealth(20);
             counterHp.setText("HP: " + valueOf(App.player.getHealth()));
+            counterHp.setFill(Color.ANTIQUEWHITE);
             hp.getChildren().add(counterHp);
         //yderligere mangler vi hp bar
         counterCO2 = new Text();
             counterCO2.relocate(8,84);
-            counterCO2.setFont(Font.font("/org/Images/Mario-Kart-DS.ttf"));
+            counterCO2.setStyle("-fx-font-family: Mario-Kart-DS");
             counterCO2.setText("CO2: " + valueOf(0));
             counterCO2.setFill(Color.ANTIQUEWHITE);
             hp.getChildren().add(counterCO2);
