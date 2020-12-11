@@ -125,6 +125,8 @@ public class gameLoop {
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
                     App.getRootscene().getChildren().add(hp);
+                    App.createfood();
+                    App.getRootscene().getChildren().add(App.getFoodLayer());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -151,6 +153,8 @@ public class gameLoop {
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
                     App.getRootscene().getChildren().add(hp);
+                    App.createfood();
+                    App.getRootscene().getChildren().add(App.getFoodLayer());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -177,6 +181,8 @@ public class gameLoop {
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
                     App.getRootscene().getChildren().add(hp);
+                    App.createfood();
+                    App.getRootscene().getChildren().add(App.getFoodLayer());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -202,6 +208,9 @@ public class gameLoop {
                     fadeTransition2.play();
                     App.getRootscene().getChildren().add(App.getSceneName());
                     App.getRootscene().getChildren().add(hp);
+                    App.createfood();
+                    App.getRootscene().getChildren().add(App.getFoodLayer());
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -237,16 +246,27 @@ public class gameLoop {
 
                 }
 
-                for (int i = 0; i<App.getFoodList().size(); i++){
-                    if (App.getFoodList().get(i).getLayoutX() < App.player.getX() && App.player.getX() < (App.getFoodList().get(i).getLayoutX()+App.getFoodList().get(i).getImage().getWidth())){
-                        if (App.getFoodList().get(i).getLayoutY() < App.player.getY() && App.player.getY() < (App.getFoodList().get(i).getLayoutY()+App.getFoodList().get(i).getImage().getHeight())) {
-                            if (App.player.getHealth() + 25 <= 100) {
+                for (int i = 0; i<Game.getCurrentRoom().getFoodList().size(); i++){
+                    if (Game.getCurrentRoom().getFoodList().get(i).getLayoutX() < App.player.getX() && App.player.getX() < (Game.getCurrentRoom().getFoodList().get(i).getLayoutX()+Game.getCurrentRoom().getFoodList().get(i).getImage().getWidth())){
+                        if (Game.getCurrentRoom().getFoodList().get(i).getLayoutY() < App.player.getY() && App.player.getY() < (Game.getCurrentRoom().getFoodList().get(i).getLayoutY()+Game.getCurrentRoom().getFoodList().get(i).getImage().getHeight())) {
+                            if (App.player.getHealth() + 25 >= 100) {
+                                hp.getChildren().remove(counterHp);
                                 App.player.setHealth(100);
-                                System.out.println("hejsa2");
-                            } else {
-                                System.out.println("hejsa");
-                                App.player.setHealth(App.player.getHealth() + 25);
+                                counterHp.setText("HP: " + valueOf(App.player.getHealth()));
+                                hp.getChildren().add(counterHp);
 
+                                Game.getCurrentRoom().getFoodList().remove(i);
+                                App.getFoodLayer().getChildren().clear();
+                                App.getFoodLayer().getChildren().addAll(Game.getCurrentRoom().getFoodList());
+                            } else {
+                                hp.getChildren().remove(counterHp);
+                                App.player.setHealth(App.player.getHealth() + 25);
+                                counterHp.setText("HP: " + valueOf(App.player.getHealth()));
+                                hp.getChildren().add(counterHp);
+
+                                Game.getCurrentRoom().getFoodList().remove(i);
+                                App.getFoodLayer().getChildren().clear();
+                                App.getFoodLayer().getChildren().addAll(Game.getCurrentRoom().getFoodList());
                             }
                         }
                     }

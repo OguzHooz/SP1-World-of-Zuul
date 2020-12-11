@@ -1,7 +1,10 @@
 package org.CrabGame;
 
+import javafx.scene.image.ImageView;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class Room {
@@ -21,6 +24,8 @@ public class Room {
     ArrayList<Integer> foodCoordinatey;
     ArrayList<String> foodType;
     ArrayList<Integer> foodAmount;
+
+    public static List<ImageView> foodList = new ArrayList<>();
 
     //Constructor
     public Room(String description, String roomName, double initialCO2, double higherCO2){
@@ -169,6 +174,9 @@ public class Room {
         return initialCO2;
     }
 
+    public static List<ImageView> getFoodList() {
+        return foodList;
+    }
 
     public String getRoomName() {
         return roomName;

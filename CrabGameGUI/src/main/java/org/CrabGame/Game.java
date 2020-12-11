@@ -64,7 +64,6 @@ public class Game {
         //sætter startstedet af spillet
         currentRoom = center;
         //currentroom is discovered
-        currentRoom.isDiscovered = true;
     }
     public void play(){
         printWelcome();

@@ -28,7 +28,6 @@ public class App extends Application {
     private static Image playerImage;
     private static Label SceneName;
     private static Pane foodLayer;
-    private static List<ImageView> foodList;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -66,17 +65,16 @@ public class App extends Application {
     }
 
     public static void createLevel(Scene scene) {
-        createfood(scene);
+        createfood();
         createPlayer(scene);
     }
-    private static void createfood(Scene scene){
-        ArrayList<ImageView> arrayImage = new ArrayList<>();
-        foodList = new ArrayList<>();
+    public static void createfood(){
         Room currentRoom = Game.getCurrentRoom();
 
+        ArrayList<ImageView> arrayImage = new ArrayList<>();
+        if (!currentRoom.isDiscovered){
         //så skal vi gå i gennem hvert stykke mad og sætte billed på f1,f2 eller f3
         //i forhold til hvilket stykke mad der er spawnet
-        if (!currentRoom.isDiscovered | currentRoom.getRoomName().equals("center")){
             for (int i = 0; i < currentRoom.getFoodCoordinatex().size(); i++){
                 ImageView imageView = new ImageView();
                 arrayImage.add(imageView);
@@ -90,7 +88,7 @@ public class App extends Application {
                 arrayImage.get(i).setLayoutY(Math.random()*Settings.GAME_HEIGHT);
                 arrayImage.get(i).setUserData("food");
                 foodLayer.getChildren().add(arrayImage.get(i));
-                foodList.add(arrayImage.get(i));
+                currentRoom.foodList.add(arrayImage.get(i));
             }
         }
     }
@@ -123,8 +121,8 @@ public class App extends Application {
         return SceneName;
     }
 
-    public static List<ImageView> getFoodList() {
-        return foodList;
+    public static Pane getFoodLayer() {
+        return foodLayer;
     }
 
     //loader spillet op (Kaldes i Main)
